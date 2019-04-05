@@ -1,17 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
-from .models import JobOffert, Company, Localisation
+from .models import Offert, Company, Localisation
 
 def index(request):
-    offert_list = JobOffert.objects.all()
+    offert_list = Offert.objects.all()
     context = {'offert_list' : offert_list}
-    
+
     return render(request, 'offerts/index.html', context)
 
 def details(request, offert_id):
-    try:
-        offert = JobOffert.objects.get(pk=offert_id)
-    except JobOffert.DoesNotExist:
-        raise Http404("Offert does not exist")
+    offert = get_object_or_404(Offert, pk=offert_id)
     return render(request, 'offerts/details.html', {'offert' : offert})

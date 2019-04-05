@@ -1,7 +1,7 @@
 {% if offert_list %}
     <ul>
         {% for offert in offert_list %}
-            <li><a href="/offerts/{{ offert.id }}/"> {{ offert.position }} </a></li>
+            <li><a href="{% url 'offerts:details' offert.id %}"> {{ offert.position }} </a></li>
         {% endfor %}
     </ul>
 {% else %}
