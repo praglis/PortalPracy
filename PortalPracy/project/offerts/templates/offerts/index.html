@@ -10,17 +10,18 @@
         text-align: center;
       }
 
+      .button{
+        margin-left: 350px;
+      }
       #offert-box{
-        color: white;
+        color: black;
         width: 500px;
-        height: 150px;
+        height: 200px;
         text-align: center;
-        border-color: black;
-        border-width: 2px;
-        border-style: solid;
+        border: 1px solid #ccc;
         border-radius: 10px;
-        background-color: grey;
         margin: 10px 40px 10px 40px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
       }
     </style>
 
@@ -35,10 +36,13 @@
       {% if offert_list %}
         {% for offert in offert_list %}
           <div id='offert-box'>
-            <h3>Position: {{ offert.position }} </h3>
+            <h3> {{ offert.position }} </h3>
+            <hr>
             <h4>Company: {{ offert.company.name }}</h4>
-            <a href="{% url 'offerts:details' offert.id %}"> <button> See more </button> </a>
-            <a href="#"><button> Apply </button></a>
+            <h4>Localisation: {{ offert.localisation }}</h4>
+            <a href="{% url 'offerts:details' offert.id %}">
+              <button class="button"> See more </button>
+            </a>
             <br>
           </div>
           <br>
