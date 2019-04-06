@@ -1,9 +1,51 @@
-{% if offert_list %}
-    <ul>
+<!DOCTYPE html>
+
+  <html>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <style>
+      h1{
+        color: black;
+        font-size: 60px;
+        font-family:  'Amatic SC', cursive, monospace;
+        text-align: center;
+      }
+
+      #offert-box{
+        color: white;
+        width: 500px;
+        height: 150px;
+        text-align: center;
+        border-color: black;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 10px;
+        background-color: grey;
+        margin: 10px 40px 10px 40px;
+      }
+    </style>
+
+    <head>
+      <title> Portal Pracy </title>
+    </head>
+
+    <body>
+      <h1> Portal Pracy </h1>
+      <hr>
+      <h2> Oferty: </h2>
+      {% if offert_list %}
         {% for offert in offert_list %}
-            <li><a href="{% url 'offerts:details' offert.id %}"> {{ offert.position }} </a></li>
+          <div id='offert-box'>
+            <h3>Position: {{ offert.position }} </h3>
+            <h4>Company: {{ offert.company.name }}</h4>
+            <a href="{% url 'offerts:details' offert.id %}"> <button> See more </button> </a>
+            <a href="#"><button> Apply </button></a>
+            <br>
+          </div>
+          <br>
         {% endfor %}
-    </ul>
-{% else %}
-    <p>No offerts available.</p>
-{% endif %}
+      {% else %}
+        <h3>No offerts available.</h3>
+      {% endif %}
+    </body>
+
+  </html>
