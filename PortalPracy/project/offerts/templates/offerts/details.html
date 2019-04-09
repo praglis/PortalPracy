@@ -1,4 +1,68 @@
-<h1> {{ offert.position }}</h1>
+<!-- <!DOCTYPE=html> -->
+<html>
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'offerts/details.css' %}">
+  <title>{{ offert.position }} - details</title>
+</head>
+<body>
 
-<h3> Company: {{ offert.company.name }}</h3>
-<h3> Salary: {{ offert.salary }} </h3>
+  <header>
+    <h1 class="light-on-dark">Job Portal</h1>
+  </header>
+
+  <div>
+    <h1>{{ offert.position }}</h1>
+
+    <img src="https://nofluffjobs.com/upload/Nova_Tracking_sp_z_o_o_20190405_203913.jpeg"
+    alt="Company logo">
+    <p>Company: {{ offert.company.name }}<br>
+      Location: Bygdoszcz, Poland</p>
+      <button class="light-on-dark">APPLY</button>
+    </div>
+    <div>
+      <h2>About:</h2>
+      <p></p>
+    </div>
+    <div>
+      <h2>Must have:</h2>
+      <ul>
+        <li>PHP</li>
+        <li>MySQL</li>
+        <li>Symfony</li>
+        <li>Git</li>
+        <li>PostgreSQL</li>
+        <li>MongoDB</li>
+        <li>Polish</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Nice to have:</h2>
+      <ul>
+        <li>REST</li>
+        <li>Docker</li>
+        <li>Redis</li>
+        <li>English</li>
+        <li>Team player</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Duties:</h2>
+      <p></p>
+    </div>
+    <div>
+      <h2>Benefits:</h2>
+      <ul>
+        <li>Free coffee</li>
+        <li>Gym</li>
+        <li>Modern office</li>
+        <li>Startup atmosphere</li>
+        <li>No dress code</li>
+        <li>BENEFITS</li>
+        <li>Private healthcare</li>
+        <li>Small teams</li>
+        <li>International projects</li>
+      </ul>
+    </div>
+  </body>
+  </html>
