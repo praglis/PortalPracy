@@ -1,0 +1,53 @@
+body {     
+    font-family: sans-serif;
+    background-color: powderblue;
+}
+
+img {
+    border-style: solid;
+    padding: 10px;
+    border-color: rebeccapurple;
+    border-radius: 10px;
+    width: 40%; 
+    margin-bottom: -5px;
+    background-color: white;
+}
+
+.light-on-dark {
+    text-align: center;
+    color: aliceblue;
+    font-family: monospace;
+    background-color: rebeccapurple;
+}
+
+div {
+    background-color: aliceblue;
+    padding-left: 30px;
+    padding-bottom: 30px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: rebeccapurple;
+    border-radius: 8px;
+    margin-top: 20px;
+    width: 26%;
+    margin-left: 37%;
+    margin-right: 37%;
+}
+
+h2 {
+    text-align: center;
+    margin-left: -30px;
+}
+
+li {
+    margin: 10px;
+}
+
+header {    
+    font-size: 20px;
+    border-style: solid;
+    border-color: aliceblue;
+    border-width: 8px;
+    background-color: rebeccapurple;
+
+}
