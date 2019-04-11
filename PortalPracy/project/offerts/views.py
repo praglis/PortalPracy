@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
-from .models import Offert, Company, Localisation
+from .models import Offert, Company, Agency
 
 def index(request):
     offert_list = Offert.objects.all()

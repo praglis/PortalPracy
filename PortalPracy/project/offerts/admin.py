@@ -1,7 +1,8 @@
 from django.contrib import admin
 
-from .models import Company, Localisation, Offert
+from .models import Company, Agency, Offert, Tag
 
 admin.site.register(Company)
-admin.site.register(Localisation)
+admin.site.register(Agency)
 admin.site.register(Offert)
+admin.site.register(Tag)

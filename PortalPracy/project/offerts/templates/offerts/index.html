@@ -38,8 +38,8 @@
           <div id='offert-box'>
             <h3> {{ offert.position }} </h3>
             <hr>
-            <h4>Company: {{ offert.company.name }}</h4>
-            <h4>Localisation: {{ offert.localisation }}</h4>
+            <h4>Company: {{ offert.agency.company.name }}</h4>
+            <h4>Localisation: {{ offert.agency.country }}, {{offert.agency.location }}</h4>
             <a href="{% url 'offerts:details' offert.id %}">
               <button class="button"> See more </button>
             </a>

@@ -16,8 +16,8 @@
 
     <img src="https://nofluffjobs.com/upload/Nova_Tracking_sp_z_o_o_20190405_203913.jpeg"
     alt="Company logo">
-    <p>Company: {{ offert.company.name }}<br>
-      Location: Bygdoszcz, Poland</p>
+    <p>Company: {{ offert.agency.company.name }}<br>
+      Location: {{ offert.agency.country }}, {{offert.agency.location }}</p>
       <button class="light-on-dark">APPLY</button>
     </div>
     <div>
