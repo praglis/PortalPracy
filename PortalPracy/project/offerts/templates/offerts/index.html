@@ -1,35 +1,13 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
 
-  <html>
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-    <style>
-      h1{
-        color: black;
-        font-size: 60px;
-        font-family:  'Amatic SC', cursive, monospace;
-        text-align: center;
-      }
-
-      .button{
-        margin-left: 350px;
-      }
-      #offert-box{
-        color: black;
-        width: 500px;
-        height: 200px;
-        text-align: center;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        margin: 10px 40px 10px 40px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-      }
-    </style>
-
-    <head>
+   {% block head %}
       <title> Portal Pracy </title>
-    </head>
+   {% endblock %}
 
-    <body>
+    {% block body %}
+      <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+      <link rel="Stylesheet" type="text/css" href="{% static 'offerts/index.css' %}">
       <h1> Portal Pracy </h1>
       <hr>
       <h2> Oferty: </h2>
@@ -50,6 +28,5 @@
       {% else %}
         <h3>No offerts available.</h3>
       {% endif %}
-    </body>
 
-  </html>
+    {% endblock %}
