@@ -1,0 +1,25 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+
+  <html>
+    <head>
+      {% block head %}
+      {% endblock %}
+    </head>
+
+    <body>
+      <link rel="Stylesheet" type="text/css" href="{% static 'navbar.css' %}">
+      <nav>
+        <ul>
+            <li><a href="{%url 'offerts:index'%}">Offerts</a></li>
+            <li><a href="{%url 'add:index'%}">Add new offert</a></li>
+            <li><a href="{%url 'sign_in:index'%}">Sign in</a></li>
+            <li><a href="{%url 'search:index'%}">Search</a></li>
+        </ul>
+      </nav>
+      {% block body %}
+      {% endblock %}
+    </body>
+  </html>

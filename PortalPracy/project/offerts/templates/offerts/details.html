@@ -1,11 +1,13 @@
-<!-- <!DOCTYPE=html> -->
-<html>
-<head>
-  {% load static %}
+{% extends 'base.html' %}
+{% load static %}
+
+   {% block head %}
   <link rel="stylesheet" type="text/css" href="{% static 'offerts/details.css' %}">
   <title>{{ offert.position }} - details</title>
-</head>
-<body>
+  {% endblock %}
+
+
+  {% block body %}
 
   <header>
     <h1 class="light-on-dark">Job Portal</h1>
@@ -64,5 +66,4 @@
         <li>International projects</li>
       </ul>
     </div>
-  </body>
-  </html>
+    {% endblock %}
