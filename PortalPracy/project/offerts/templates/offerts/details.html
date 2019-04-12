@@ -2,68 +2,22 @@
 {% load static %}
 
    {% block head %}
-  <link rel="stylesheet" type="text/css" href="{% static 'offerts/details.css' %}">
-  <title>{{ offert.position }} - details</title>
-  {% endblock %}
-
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <link rel="Stylesheet" type="text/css" href="{% static 'offerts/index.css' %}">
+    <title>{{ offert.position }} - details</title>
+   {% endblock %}
 
   {% block body %}
 
-  <header>
-    <h1 class="light-on-dark">Job Portal</h1>
-  </header>
 
-  <div>
-    <h1>{{ offert.position }}</h1>
+    <h2> Details: </h2>
+        <div id='offert-box'>
+            <h1>{{ offert.position }}</h1>
+            <hr>
+            <p>Company: {{ offert.agency.company.name }}<br>
+              Location: {{ offert.agency.country }}, {{offert.agency.location }}
+            </p>
+            <a href="{% url 'add:apply' %}"><button class="light-on-dark">APPLY</button></a>
+        <div>
 
-    <img src="https://nofluffjobs.com/upload/Nova_Tracking_sp_z_o_o_20190405_203913.jpeg"
-    alt="Company logo">
-    <p>Company: {{ offert.agency.company.name }}<br>
-      Location: {{ offert.agency.country }}, {{offert.agency.location }}</p>
-      <button class="light-on-dark">APPLY</button>
-    </div>
-    <div>
-      <h2>About:</h2>
-      <p></p>
-    </div>
-    <div>
-      <h2>Must have:</h2>
-      <ul>
-        <li>PHP</li>
-        <li>MySQL</li>
-        <li>Symfony</li>
-        <li>Git</li>
-        <li>PostgreSQL</li>
-        <li>MongoDB</li>
-        <li>Polish</li>
-      </ul>
-    </div>
-    <div>
-      <h2>Nice to have:</h2>
-      <ul>
-        <li>REST</li>
-        <li>Docker</li>
-        <li>Redis</li>
-        <li>English</li>
-        <li>Team player</li>
-      </ul>
-    </div>
-    <div>
-      <h2>Duties:</h2>
-      <p></p>
-    </div>
-    <div>
-      <h2>Benefits:</h2>
-      <ul>
-        <li>Free coffee</li>
-        <li>Gym</li>
-        <li>Modern office</li>
-        <li>Startup atmosphere</li>
-        <li>No dress code</li>
-        <li>BENEFITS</li>
-        <li>Private healthcare</li>
-        <li>Small teams</li>
-        <li>International projects</li>
-      </ul>
-    </div>
-    {% endblock %}
+  {% endblock %}
