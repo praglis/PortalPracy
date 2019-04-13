@@ -21,7 +21,7 @@
     <body>
       <!-- navigation bar -->
       <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <nav id="navbar" class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
           <div class="container">
             <a class="navbar-brand mr-4" href="{% url 'offerts:index' %}">Job Portal</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
                 <a class="nav-item nav-link" href="{% url 'offerts:index' %}">Offerts</a>
-                <a class="nav-item nav-link" href="{%url 'add:index'%}">Add new offert</a>
+                <a class="nav-item nav-link" href="{%url 'add:offert'%}">Add new offert</a>
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
