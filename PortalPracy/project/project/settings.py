@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'my_offerts.apps.MyOffertsConfig',
     'search.apps.SearchConfig',
     'sign_in.apps.SignInConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
