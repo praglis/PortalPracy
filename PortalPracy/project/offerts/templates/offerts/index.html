@@ -11,8 +11,8 @@
       <h1> Portal Pracy </h1>
       <hr>
       <h2> Oferty: </h2>
-      {% if offert_list %}
-        {% for offert in offert_list %}
+      {% if offerts %}
+        {% for offert in offerts %}
         <article class="media content-section">
         <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
             <div class="media-body">
