@@ -10,7 +10,7 @@
       <link rel="Stylesheet" type="text/css" href="{% static 'offerts/index.css' %}">
       <h1> Portal Pracy </h1>
       <hr>
-      <h2> Oferty: </h2>
+      <h2> Moje oferty: </h2>
       {% if offerts %}
         {% for offert in offerts %}
         <article class="media content-section">
@@ -22,7 +22,8 @@
                 </div>
                 <h2><a class="article-title">{{ offert.position }}</a></h2>
                 <br>
-                <a href="{% url 'offerts:offertDetails' offert.id %}"><button type="button" class="btn btn-outline-primary">See more</button></a>
+                <a href="{% url 'offerts:offert-delete' offert.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
+                <a href="{% url 'offerts:offert-update' offert.id %}"><button type="button" class="btn btn-outline-primary">Update</button></a>
             <div>
         </article>
 

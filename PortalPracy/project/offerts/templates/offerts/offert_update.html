@@ -11,11 +11,11 @@
     <form method="POST" novalidate>
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Add new job offert</legend>
+            <legend class="border-bottom mb-4">Update this job offert</legend>
             {{ form|crispy }}
         </fieldset>
         <div class="form-group">
-          <button class="btn btn-outline-info" type="submit">Add</button>
+          <button class="btn btn-outline-info" type="submit">Update</button>
         </div>
     </form>
 {% endblock %}
