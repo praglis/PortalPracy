@@ -5,17 +5,3 @@ h1{
   font-family:  'Amatic SC', cursive, monospace;
   text-align: center;
 }
-
-.button{
-  margin-left: 350px;
-}
-#offert-box{
-  color: black;
-  width: 500px;
-  height: 200px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  margin: 10px 40px 10px 40px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}

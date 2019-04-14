@@ -3,21 +3,26 @@
 
    {% block head %}
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-    <link rel="Stylesheet" type="text/css" href="{% static 'offerts/index.css' %}">
     <title>{{ offert.position }} - details</title>
    {% endblock %}
 
   {% block body %}
 
-
-    <h2> Details: </h2>
-        <div id='offert-box'>
-            <h1>{{ offert.position }}</h1>
+    <article class="media content-section">
+    <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
+        <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2">{{ offert.agency.company.name }}</a>
+              <small class="text-muted">{{offert.publication_date}}</small>
+            </div>
+            <h1><a class="article-title">{{ offert.position }}</a></h1>
             <hr>
-            <p>Company: {{ offert.agency.company.name }}<br>
-              Location: {{ offert.agency.country }}, {{offert.agency.location }}
-            </p>
-            <a href="{% url 'add:apply' %}"><button class="light-on-dark">APPLY</button></a>
-        <div>
+            <p class="article-content">Location: {{ offert.agency.country }}, {{offert.agency.location }}</p>
+            <p class="article-content">Duties: {{offert.duties}}</p>
+            <p class="article-content">Salary: {{offert.min_salary}}-{{offert.max_salary}} zl</p>
 
+
+            <a href="{% url 'add:apply' %}"><button type="button" class="btn btn-outline-primary">APPLY</button></a>
+        <div>
+    </article>
   {% endblock %}
