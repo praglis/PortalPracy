@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Company(models.Model):
     name = models.CharField(max_length = 200, unique=True)
@@ -44,3 +45,6 @@ class Offert(models.Model):
 
     def __str__(self):
         return self.position + ', ' + self.agency.company.name
+# redirect link
+    def get_absolute_url(self):
+        return reverse('offerts:offertDetails', kwargs={'pk':self.pk})
