@@ -2,7 +2,7 @@ from django.db import models
 
 class Company(models.Model):
     name = models.CharField(max_length = 200, unique=True)
-    logo = models.ImageField(upload_to = "media/logos/", null=True, default=None)
+    logo = models.ImageField(upload_to = "logos/", null=True, default=None)
     webpage = models.URLField(null=True)
     about = models.CharField(max_length = 1000)
 
