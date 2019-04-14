@@ -13,17 +13,19 @@
       <h2> Oferty: </h2>
       {% if offert_list %}
         {% for offert in offert_list %}
-          <div id='offert-box'>
-            <h3> {{ offert.position }} </h3>
-            <hr>
-            <h4>Company: {{ offert.agency.company.name }}</h4>
-            <h4>Localisation: {{ offert.agency.country }}, {{offert.agency.location }}</h4>
-            <a href="{% url 'offerts:details' offert.id %}">
-              <button class="button"> See more </button>
-            </a>
-            <br>
-          </div>
-          <br>
+        <article class="media content-section">
+        <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
+            <div class="media-body">
+                <div class="article-metadata">
+                  <a class="mr-2">{{ offert.agency.company.name }}</a>
+                  <small class="text-muted">Location: {{ offert.agency.country }}, {{offert.agency.location }}</small>
+                </div>
+                <h2><a class="article-title">{{ offert.position }}</a></h2>
+                <br>
+                <a href="{% url 'offerts:details' offert.id %}"><button type="button" class="btn btn-outline-primary">See more</button></a>
+            <div>
+        </article>
+
         {% endfor %}
       {% else %}
         <h3>No offerts available.</h3>
