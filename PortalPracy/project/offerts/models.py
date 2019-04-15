@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from PIL import Image
+from django.contrib.auth.models import User
 
 class Company(models.Model):
     name = models.CharField(max_length = 200, unique=True)
@@ -9,6 +11,16 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self):
+        super().save()
+
+        img = Image.open(self.logo.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size) # resizes image (thumbnails are reduced-size versions of pictures)
+            img.save(self.logo.path)
 
 class Agency(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
@@ -29,6 +41,7 @@ class Tag(models.Model):
         return self.name
 
 class Offert(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     position = models.CharField(max_length = 100)
     agency = models.ForeignKey(Agency, on_delete=models.CASCADE)
     remote = models.BooleanField(default=False)

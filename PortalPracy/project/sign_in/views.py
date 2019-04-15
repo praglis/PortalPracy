@@ -3,8 +3,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
-def index(request):
-    return render(request, 'sign_in/index.html')
 
 def register(request):
     if request.method == "POST":

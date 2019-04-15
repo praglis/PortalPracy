@@ -30,13 +30,13 @@
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
                 <a class="nav-item nav-link" href="{% url 'offerts:index' %}">Offerts</a>
-                <a class="nav-item nav-link" href="{%url 'add:offert'%}">Add new offert</a>
+                <a class="nav-item nav-link" href="{%url 'offerts:new_offert'%}">Add new offert</a>
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
                 <a class="nav-item nav-link" href="{%url 'search:index'%}">Search</a>
                 {% if user.is_authenticated%}
-                  <a class="nav-item nav-link"href="{% url 'offerts:offert-my' %}">My offerts</a>
+                  <a class="nav-item nav-link"href="{% url 'manager:manager-my' %}">My offerts</a>
                   <a class="nav-item nav-link"href="{%url 'profile'%}">Profile</a>
                   <a class="nav-item nav-link"href="{%url 'logout'%}">Logout</a>
                 {% else %}
