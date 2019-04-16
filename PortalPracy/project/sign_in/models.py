@@ -4,7 +4,9 @@ from PIL import Image # Pillow
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=15, null=True)
     image = models.ImageField(upload_to = "profile_pictures/", default='kiwi.jpg')
+    cv = models.FileField(upload_to = "cvs/", null=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'

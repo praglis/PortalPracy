@@ -5,7 +5,7 @@ from .models import Profile
 
 # form that inherits from UserCreationForm
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField(required=False) #default: required=True
+    email = forms.EmailField() #default: required=True
 
     class Meta:
         model = User # model that is going to be affected when form.save() is done
@@ -19,7 +19,8 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['username', 'email']
 
 class ProfileUpdateForm(forms.ModelForm):
-    # no additional fields needed so...
+    phone = forms.CharField(required=False)
+    cv = forms.FileField(required=False)
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['phone', 'image', 'cv']

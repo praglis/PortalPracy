@@ -16,8 +16,21 @@ class OffertDetailView(DetailView):
 
 class OffertCreateView(LoginRequiredMixin, CreateView):
     model = Offert
-    fields = ['position', 'agency', 'min_salary', 'max_salary', 'must_have', 'nice_to_have', 'duties', 'benefits','about']
+    fields = [  'position',
+                'agency',
+                'remote',
+                'per_hour',
+                'min_salary',
+                'max_salary',
+                'must_have',
+                'nice_to_have',
+                'duties',
+                'benefits',
+                'about'
+    ]
+
     template_name = "offerts/add_offert.html"
+
 #nie usuwac tego:
     def form_valid(self, form):
         form.instance.author = self.request.user
