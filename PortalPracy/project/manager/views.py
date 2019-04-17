@@ -1,5 +1,8 @@
 from django.views.generic import ListView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import get_object_or_404
+
+from django.contrib.auth.models import User
 from offerts.models import Offert
 
 class MyOffertsListView(ListView):
@@ -7,9 +10,11 @@ class MyOffertsListView(ListView):
      template_name = 'manager/my_offerts.html' # default: <app>/<model>_<viewtype>.html
      context_object_name = 'offerts'
      ordering = ['-publication_date'] # '-' -> from newest to oldest
- # http://localhost:8000/offerts/update/10/
- # class OffertUpdateView(LoginRequiredMixin, UserPassesTestMixin UpdateView):
-class OffertUpdateView(LoginRequiredMixin, UpdateView):
+
+     def get_queryset(self):
+         return Offert.objects.filter(author=self.request.user).order_by('-publication_date')
+
+class OffertUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
      model = Offert
      fields = ['position', 'agency', 'min_salary', 'max_salary', 'must_have', 'nice_to_have', 'duties', 'benefits']
      template_name = "manager/offert_update.html"
@@ -24,8 +29,8 @@ class OffertUpdateView(LoginRequiredMixin, UpdateView):
              return True
          return False
 
- # class OffertUpdateView(LoginRequiredMixin, UserPassesTestMixin UpdateView):
-class OffertDeleteView(LoginRequiredMixin, DeleteView):
+
+class OffertDeleteView(LoginRequiredMixin,UserPassesTestMixin, DeleteView):
      model = Offert
      success_url = '/offerts/'
      template_name = "manager/offert_confirm_delete.html"

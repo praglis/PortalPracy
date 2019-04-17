@@ -6,11 +6,11 @@
    {% endblock %}
 
     {% block body %}
-      <h1 class="mb-3">View your offerts: </h1>
       <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
       <link rel="Stylesheet" type="text/css" href="{% static 'offerts/index.css' %}">
+      <h1> Portal Pracy </h1>
       <hr>
-      <h2> Moje oferty: </h2>
+      <h2> Latest oferts: </h2>
       {% if offerts %}
         {% for offert in offerts %}
         <article class="media content-section">
@@ -22,9 +22,7 @@
                 </div>
                 <h2><a class="article-title">{{ offert.position }}</a></h2>
                 <br>
-                <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
-                <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-outline-primary">Update</button></a>
-                <a href="#"><button type="button" class="btn btn-outline-warning">See replies</button></a>
+                <a href="{% url 'offerts:offertDetails' offert.id %}"><button type="button" class="btn btn-outline-primary">See more</button></a>
             <div>
         </article>
 
