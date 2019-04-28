@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 # class based view
 def home(request):
-    offerts = Offert.objects.all()[:3]
+    offerts = Offert.objects.all().order_by('-publication_date')[:3]
     return render(request, 'home.html', {'offerts': offerts})
 
 class OffertListView(ListView):
