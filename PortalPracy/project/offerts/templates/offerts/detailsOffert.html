@@ -17,7 +17,11 @@
             </div>
             <h1><a class="article-title">{{ offert.position }}</a></h1>
             <hr>
-            <p class="article-content">Location: {{ offert.agency.country }}, {{offert.agency.location }}</p>
+            Must have:
+              {% for tag in offert.must_have.all %}
+                {{tag}}
+              {% endfor %} <br/>
+            <p class="article-content"><br>Location: {{ offert.agency.country }}, {{offert.agency.location }}</p>
             <p class="article-content">Duties: {{offert.duties}}</p>
             <p class="article-content">Salary: {{offert.min_salary}}-{{offert.max_salary}} zl</p>
             <p class="article-content">Author: {{offert.author}} </p>
