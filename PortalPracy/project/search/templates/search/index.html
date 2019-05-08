@@ -6,5 +6,85 @@
    {% endblock %}
 
     {% block body %}
-      <h1> Wyszukaj oferte: </h1>
-    {% endblock %}
+
+    <main role="main" class="container">
+
+        <h3>Filter Offerts</h3> <br>
+           <form method="GET">
+             <!-- position -->
+             <div class="form-row">
+               <div class="form-group col-12">
+                   <div class="input-group-append">
+                       <input class="form-control py-2 border-right-0 border" type="search" placeholder="Position...">
+                       <span class = "input-group">
+                           <div class="input-group-text bg-transparent">
+                               <i class="fa fa-search"></i>
+                           </div>
+                       </span>
+                   </div>
+               </div>
+             </div>
+
+             <!-- location -->
+             <div class="form-row">
+               <div class="form-group col-12">
+                   <div class="input-group-append">
+                       <input class="form-control py-2 border-right-0 border" type="search" placeholder="Location...">
+                       <span class = "input-group">
+                           <div class="input-group-text bg-transparent">
+                               <i class="fa fa-search"></i>
+                           </div>
+                       </span>
+                   </div>
+               </div>
+             </div>
+
+             <div class="form-row">
+               <div class="form-group col-md-2 col-lg-3">
+                    <label for="publishDateMin">Publish date minimum</label>
+                    <input type="date" class="form-control" id="publishDateMin" >
+                </div>
+
+                <div class="form-group col-md-2 col-lg-3">
+                    <label for="publishDateMax">Publish date maximum</label>
+                    <input type="date" class="form-control" id="publishDateMax" >
+                </div>
+             </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-2 col-lg-2">
+                    <label for="payMin">Minimum pay</label>
+                    <input type="number" min=0 class="form-control" id="payMin" placeholder="0">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="tags">Technologies</label>
+                    <select id="tags" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">Per hour</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label class="form-check-label" for="inlineRadio2">Monthly</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="remoteCheck">
+                <label class="form-check-label" for="remoteCheck">
+                    Remote
+                </label>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Search</button>
+           </form>
+    </main>
+
+  {% endblock %}
