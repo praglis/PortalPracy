@@ -24,7 +24,7 @@
                 <br>
                 <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
                 <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-outline-primary">Update</button></a>
-                <a href="#"><button type="button" class="btn btn-outline-warning">See replies</button></a>
+                <a href="{% url 'manager:manager-replies' offert.id %}"><button type="button" class="btn btn-outline-warning">See replies</button></a>
             <div>
         </article>
 

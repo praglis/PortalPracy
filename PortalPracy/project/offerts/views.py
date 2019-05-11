@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView
-from .models import Offert
+from .models import Offert, Application
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 
@@ -43,4 +43,21 @@ class OffertCreateView(LoginRequiredMixin, CreateView):
 #nie usuwac tego:
     def form_valid(self, form):
         form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class ApplicationCreateView(LoginRequiredMixin, CreateView):
+    model = Application
+    fields = [  'first_name',
+                'last_name',
+                'email',
+                'portfolio_link',
+                'message',
+    ]
+    template_name = "offerts/createApplication.html"
+#nie usuwac tego:
+    def form_valid(self, form):
+        form.instance.applicant = self.request.user
+        offert_id = self.kwargs['pk']
+        form.instance.offert = Offert.objects.get(id=offert_id)
+        #form.instance.offert = Offert.objects.get(self.kwargs['pk'])
         return super().form_valid(form)

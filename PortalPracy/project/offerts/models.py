@@ -9,6 +9,8 @@ class Company(models.Model):
     webpage = models.URLField(null=True)
     about = models.CharField(max_length = 1000)
 
+    class Meta:
+        verbose_name_plural = "Companies"
     def __str__(self):
         return self.name
 
@@ -30,6 +32,9 @@ class Agency(models.Model):
     weppage = models.URLField(null=True)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
+
+    class Meta:
+        verbose_name_plural = "Agencies"
 
     def __str__(self):
         return self.company.name + " - " + self.country + ", " + self.location
@@ -69,3 +74,19 @@ class Offert(models.Model):
 # redirect link
     def get_absolute_url(self):
         return reverse('offerts:offertDetails', kwargs={'pk':self.pk})
+
+class Application(models.Model):
+    offert = models.ForeignKey(Offert, on_delete=models.CASCADE)
+    applicant = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length = 100)
+    last_name = models.CharField(max_length = 100)
+    email =  models.EmailField(null=True)
+    portfolio_link = models.URLField(null=True)
+    message = models.TextField(null=True)
+
+    def __str__(self):
+
+        return self.first_name + self.last_name +", " + offert.position
+
+    def get_absolute_url(self):
+        return reverse('offerts:index')

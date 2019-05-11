@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.models import User
-from offerts.models import Offert
+from offerts.models import Offert, Application
 
 class MyOffertsListView(ListView):
      model = Offert
@@ -13,6 +13,17 @@ class MyOffertsListView(ListView):
 
      def get_queryset(self):
          return Offert.objects.filter(author=self.request.user).order_by('-publication_date')
+
+
+class RepliesListView(ListView):
+     model = Application
+     template_name = 'manager/replies.html' # default: <app>/<model>_<viewtype>.html
+     context_object_name = 'applications'
+     #ordering = ['-publication_date'] # '-' -> from newest to oldest
+     #def get_context_data(self, **kwargs): -> zwrocic context: aplikacje i odpowiadajace im profile uzytkownikow i oferty
+     def get_queryset(self):
+         applications = Application.objects.all().filter(offert_id=self.kwargs['pk'])
+         return applications
 
 class OffertUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
      model = Offert
