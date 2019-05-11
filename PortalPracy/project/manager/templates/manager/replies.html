@@ -16,9 +16,11 @@
         <article class="media content-section">>
             <div class="media-body">
                 <div class="article-metadata">
-                  <a class="mr-2">{{ ap.first_name }}</a>
+                  <a class="mr-2">Author: {{ ap.first_name }}</a>
                   <a class="mr-2">{{ ap.last_name}}</a>
                 </div>
+                <a class="mr-2">Position: {{ ap.offert.position}}</a> <br>
+                <a class="mr-2">Message: {{ ap.message}}</a>
                 <br>
                 <a href="#"><button type="button" class="btn btn-outline-primary">See details</button></a>
             <div>

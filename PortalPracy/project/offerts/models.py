@@ -76,7 +76,7 @@ class Offert(models.Model):
         return reverse('offerts:offertDetails', kwargs={'pk':self.pk})
 
 class Application(models.Model):
-    offert_id = models.IntegerField()
+    offert = models.ForeignKey(Offert, on_delete=models.CASCADE)
     applicant = models.ForeignKey(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length = 100)
     last_name = models.CharField(max_length = 100)
@@ -85,7 +85,7 @@ class Application(models.Model):
     message = models.TextField(null=True)
 
     def __str__(self):
-        offert = Offert.objects.get(id=self.offert_id)
+
         return self.first_name + self.last_name +", " + offert.position
 
     def get_absolute_url(self):

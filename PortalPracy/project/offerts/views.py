@@ -54,10 +54,10 @@ class ApplicationCreateView(LoginRequiredMixin, CreateView):
                 'message',
     ]
     template_name = "offerts/createApplication.html"
-
 #nie usuwac tego:
     def form_valid(self, form):
         form.instance.applicant = self.request.user
-        form.instance.offert_id = self.kwargs['pk']
+        offert_id = self.kwargs['pk']
+        form.instance.offert = Offert.objects.get(id=offert_id)
         #form.instance.offert = Offert.objects.get(self.kwargs['pk'])
         return super().form_valid(form)

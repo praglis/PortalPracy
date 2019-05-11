@@ -20,6 +20,7 @@ class RepliesListView(ListView):
      template_name = 'manager/replies.html' # default: <app>/<model>_<viewtype>.html
      context_object_name = 'applications'
      #ordering = ['-publication_date'] # '-' -> from newest to oldest
+     #def get_context_data(self, **kwargs): -> zwrocic context: aplikacje i odpowiadajace im profile uzytkownikow i oferty
      def get_queryset(self):
          applications = Application.objects.all().filter(offert_id=self.kwargs['pk'])
          return applications
