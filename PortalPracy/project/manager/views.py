@@ -14,6 +14,16 @@ class MyOffertsListView(ListView):
      def get_queryset(self):
          return Offert.objects.filter(author=self.request.user).order_by('-publication_date')
 
+
+class RepliesListView(ListView):
+     model = Application
+     template_name = 'manager/replies.html' # default: <app>/<model>_<viewtype>.html
+     context_object_name = 'applications'
+     #ordering = ['-publication_date'] # '-' -> from newest to oldest
+     def get_queryset(self):
+         applications = Application.objects.all().filter(offert_id=self.kwargs['pk'])
+         return applications
+
 class OffertUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
      model = Offert
      fields = ['position', 'agency', 'min_salary', 'max_salary', 'must_have', 'nice_to_have', 'duties', 'benefits']
