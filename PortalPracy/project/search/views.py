@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from offerts.models import Offert
+from offerts.models import Offert, Agency
 
 def index(request):
     qs = Offert.objects.all()
+    ag = Agency.objects.all()
 
     position_query = request.GET.get('position_name')
     location = request.GET.get('location_name')
@@ -14,6 +15,9 @@ def index(request):
 
     if position_query != '' and position_query is not None:
         qs = qs.filter(position__icontains=position_query)
+
+    if location != '' and location is not None:
+        qs = qs.filter(agency__location__icontains = location)
 
     context = {
         'queryset' : qs
