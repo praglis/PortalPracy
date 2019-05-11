@@ -45,7 +45,15 @@ class Offert(models.Model):
     position = models.CharField(max_length = 100)
     agency = models.ForeignKey(Agency, on_delete=models.CASCADE)
     remote = models.BooleanField(default=False)
-    per_hour = models.BooleanField("Salary: per hour", default=False)
+    sal_types = (
+        ('H', 'per hour'),
+        ('M', 'monthly'),
+    )
+    salary_type = models.CharField(
+        max_length=1,
+        choices=sal_types,
+        default='M',
+    )
     min_salary = models.IntegerField(default=0)
     max_salary = models.IntegerField(default=0)
     publication_date = models.DateTimeField(auto_now_add = True)

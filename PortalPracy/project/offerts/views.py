@@ -28,7 +28,7 @@ class OffertCreateView(LoginRequiredMixin, CreateView):
     fields = [  'position',
                 'agency',
                 'remote',
-                'per_hour',
+                'salary_type',
                 'min_salary',
                 'max_salary',
                 'must_have',
