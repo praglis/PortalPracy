@@ -110,7 +110,7 @@
                                       <p class="article-content">Location: {{ offert.agency.country }}, {{offert.agency.location }}</p>
                                       <p class="article-content">Duties: {{offert.duties}}</p>
                                       <p class="article-content">Remote: {{offert.remote}}</p>
-                                      <p class="article-content">Salary: {{offert.min_salary}}-{{offert.max_salary}} zl</p>
+                                      <p class="article-content">Salary: {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</p>
                                       <p class="article-content">Author: {{offert.author}} </p>
                                       <a href="#"><button type="button" class="btn btn-outline-primary">APPLY</button></a>
                                   <div>
