@@ -25,7 +25,8 @@
             <p class="article-content">Duties: {{offert.duties}}</p>
             <p class="article-content">Salary: {{offert.min_salary}}-{{offert.max_salary}} zl</p>
             <p class="article-content">Author: {{offert.author}} </p>
-            <a href="#"><button type="button" class="btn btn-outline-primary">APPLY</button></a>
+            <a href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-outline-primary">APPLY</button></a>
+
         <div>
     </article>
   {% endblock %}
