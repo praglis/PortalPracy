@@ -15,7 +15,7 @@
         </fieldset>
         <div class="form-group">
           <button class="btn btn-outline-danger" type="submit">Yes, delete</button>
-          <a class="btn btn-outline-secondary" href="{% url 'manager:manager-my' %}">Cancel</a>
+          <a class="btn btn-outline-secondary" href="{% url 'manager:manager-my' user.username %}">Cancel</a>
         </div>
     </form>
 {% endblock %}
