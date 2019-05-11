@@ -15,6 +15,7 @@ def index(request):
     pub_date_max= request.GET.get('pub_date_max')
     min_pay= request.GET.get('pay_min')
     tag = request.GET.get('tags')
+    remote = request.GET.get('remoteCheck')
 
     if is_valid_query(position):
         qs = qs.filter(position__icontains=position)
@@ -33,6 +34,9 @@ def index(request):
 
     if is_valid_query(tag) and tag != "Choose...":
         qs = qs.filter(must_have__name = tag)
+
+    if remote == 'on':
+        qs = qs.filter(remote = True)
 
     context = {
         'queryset' : qs,

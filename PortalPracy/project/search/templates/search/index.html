@@ -79,7 +79,7 @@
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="remoteCheck">
+                <input class="form-check-input" type="checkbox" name="remoteCheck">
                 <label class="form-check-label" for="remoteCheck">
                     Remote
                 </label>
@@ -107,6 +107,7 @@
                           {% endfor %} <br>
                         <p class="article-content">Location: {{ offert.agency.country }}, {{offert.agency.location }}</p>
                         <p class="article-content">Duties: {{offert.duties}}</p>
+                        <p class="article-content">Remote: {{offert.remote}}</p>
                         <p class="article-content">Salary: {{offert.min_salary}}-{{offert.max_salary}} zl</p>
                         <p class="article-content">Author: {{offert.author}} </p>
                         <a href="#"><button type="button" class="btn btn-outline-primary">APPLY</button></a>
