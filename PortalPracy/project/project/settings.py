@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'search.apps.SearchConfig',
     'sign_in.apps.SignInConfig',
     'crispy_forms',
+    'django_cleanup.apps.CleanupConfig'
 ]
 
 MIDDLEWARE = [
