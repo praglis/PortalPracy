@@ -9,6 +9,8 @@ class Company(models.Model):
     webpage = models.URLField(null=True)
     about = models.CharField(max_length = 1000)
 
+    class Meta:
+        verbose_name_plural = "Companies"
     def __str__(self):
         return self.name
 
@@ -30,6 +32,9 @@ class Agency(models.Model):
     weppage = models.URLField(null=True)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
+
+    class Meta:
+        verbose_name_plural = "Agencies"
 
     def __str__(self):
         return self.company.name + " - " + self.country + ", " + self.location
