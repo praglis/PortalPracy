@@ -61,7 +61,9 @@
                     <label for="tags">Technologies</label>
                     <select id="tags" class="form-control" name=tags>
                         <option selected>Choose...</option>
-                        <option>...</option>
+                        {% for tag in tag_set %}
+                        <option value="{{tag.name}}">{{tag.name}}</option>
+                        {% endfor %}
                     </select>
                 </div>
 

@@ -8,9 +8,8 @@
     {% block body %}
       <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
       <link rel="Stylesheet" type="text/css" href="{% static 'offerts/index.css' %}">
-      <h1> Portal Pracy </h1>
+      <h1> Job offerts: </h1>
       <hr>
-      <h2> Oferty: </h2>
       {% if offerts %}
         {% for offert in offerts %}
         <article class="media content-section">
