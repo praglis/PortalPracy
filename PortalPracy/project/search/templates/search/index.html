@@ -6,118 +6,123 @@
    {% endblock %}
 
     {% block body %}
+          <div class="row">
 
-    <main role="main" class="container">
-
-        <h3>Filter Offerts</h3> <br>
-           <form method="GET">
-             <!-- position -->
-             <div class="form-row">
-               <div class="form-group col-12">
-                   <div class="input-group-append">
-                       <input class="form-control py-2 border-right-0 border" type="search" name="position_name" placeholder="Position name contains...">
-                       <span class = "input-group">
-                           <div class="input-group-text bg-transparent">
-                               <i class="fa fa-search"></i>
+            <div class="col-md-6" id="Filter Offerts">
+              <div>
+                <h3>Filter Offerts</h3> <br>
+                   <form method="GET">
+                     <!-- position -->
+                     <div class="form-row">
+                       <div class="form-group col-12 ">
+                           <div class="input-group-append">
+                               <input class="form-control py-2 border-right-0 border" type="search" name="position_name" placeholder="Position name contains...">
+                               <span class = "input-group">
+                                   <div class="input-group-text bg-transparent">
+                                       <i class="fa fa-search"></i>
+                                   </div>
+                               </span>
                            </div>
-                       </span>
-                   </div>
-               </div>
-             </div>
+                       </div>
+                     </div>
 
-             <!-- location -->
-             <div class="form-row">
-               <div class="form-group col-12">
-                   <div class="input-group-append">
-                       <input class="form-control py-2 border-right-0 border" type="search" name="location_name" placeholder="Location name contains...">
-                       <span class = "input-group">
-                           <div class="input-group-text bg-transparent">
-                               <i class="fa fa-search"></i>
+                     <!-- location -->
+                     <div class="form-row">
+                       <div class="form-group col-12">
+                           <div class="input-group-append">
+                               <input class="form-control py-2 border-right-0 border" type="search" name="location_name" placeholder="Location name contains...">
+                               <span class = "input-group">
+                                   <div class="input-group-text bg-transparent">
+                                       <i class="fa fa-search"></i>
+                                   </div>
+                               </span>
                            </div>
-                       </span>
-                   </div>
-               </div>
-             </div>
+                       </div>
+                     </div>
 
-             <div class="form-row">
-               <div class="form-group col-md-2 col-lg-3">
-                    <label for="publishDateMin">Publish date minimum</label>
-                    <input type="date" class="form-control" id="publishDateMin" name="pub_date_min" >
-                </div>
-
-                <div class="form-group col-md-2 col-lg-3">
-                    <label for="publishDateMax">Publish date maximum</label>
-                    <input type="date" class="form-control" id="publishDateMax" name="pub_date_max" >
-                </div>
-             </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-2 col-lg-2">
-                    <label for="payMin">Minimum pay</label>
-                    <input type="number" min=0 class="form-control" id="payMin" name='pay_min' placeholder="0">
-                </div>
-
-                <div class="form-group col-md-4">
-                    <label for="tags">Technologies</label>
-                    <select id="tags" class="form-control" name=tags>
-                        <option selected>Choose...</option>
-                        {% for tag in tag_set %}
-                        <option value="{{tag.name}}">{{tag.name}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" name="per_hour">
-                <label class="form-check-label" for="inlineRadio1">Per hour</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" name="monthly">
-                <label class="form-check-label" for="inlineRadio2">Monthly</label>
-            </div>
-
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="remoteCheck">
-                <label class="form-check-label" for="remoteCheck">
-                    Remote
-                </label>
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary">Search</button>
-           </form>
-
-           <hr/>
-
-           {% if queryset %}
-                {% for offert in queryset %}
-                  <article class="media content-section">
-                    <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
-                    <div class="media-body">
-                        <div class="article-metadata">
-                          <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
-                          <small class="text-muted">{{offert.publication_date}}</small>
+                     <div class="form-row">
+                       <div class="form-group col-md-3 col-lg-4 ">
+                            <label for="publishDateMin">Min. publish date</label>
+                            <input type="date" class="form-control" id="publishDateMin" name="pub_date_min" >
                         </div>
-                        <h1><a class="article-title">{{ offert.position }}</a></h1>
-                        <hr>
-                        Must have:
-                          {% for tag in offert.must_have.all %}
-                            {{tag}}
-                          {% endfor %} <br>
-                        <p class="article-content">Location: {{ offert.agency.country }}, {{offert.agency.location }}</p>
-                        <p class="article-content">Duties: {{offert.duties}}</p>
-                        <p class="article-content">Salary: {{offert.min_salary}}-{{offert.max_salary}} zl</p>
-                        <p class="article-content">Author: {{offert.author}} </p>
-                        <a href="#"><button type="button" class="btn btn-outline-primary">APPLY</button></a>
-                    <div>
-                  </article>
-                {% endfor %}
 
-                {% else %}
-                  <h3>No offerts found.</h3>
-                {% endif %}
+                        <div class="form-group col-md-3 col-lg-4">
+                            <label for="publishDateMax">Max. publish date</label>
+                            <input type="date" class="form-control" id="publishDateMax" name="pub_date_max" >
+                        </div>
+                     </div>
 
-    </main>
+                    <div class="form-row">
+                        <div class="form-group col-md-2 col-lg-4">
+                            <label for="payMin">Minimum pay</label>
+                            <input type="number" min=0 class="form-control" id="payMin" name='pay_min' placeholder="0">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="tags">Technologies</label>
+                            <select id="tags" class="form-control" name=tags>
+                                <option selected>Choose...</option>
+                                {% for tag in tag_set %}
+                                <option value="{{tag.name}}">{{tag.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" name="per_hour">
+                        <label class="form-check-label" for="inlineRadio1">Per hour</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" name="monthly">
+                        <label class="form-check-label" for="inlineRadio2">Monthly</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remoteCheck">
+                        <label class="form-check-label" for="remoteCheck">
+                            Remote
+                        </label>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                   </form>
+              </div>
+            </div>
+            <div class="col-md-6" id="Matched Offerts">
+                         {% if queryset %}
+                              <h3>Offerts that match criterias:</h3> <hr>
+                              {% for offert in queryset %}
+                                <article class="media content-section">
+                                  <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
+                                  <div class="media-body">
+                                      <div class="article-metadata">
+                                        <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
+                                        <small class="text-muted">{{offert.publication_date}}</small>
+                                      </div>
+                                      <h1><a class="article-title">{{ offert.position }}</a></h1>
+                                      <hr>
+                                      Must have:
+                                        {% for tag in offert.must_have.all %}
+                                          {{tag}}
+                                        {% endfor %} <br>
+                                      <p class="article-content">Location: {{ offert.agency.country }}, {{offert.agency.location }}</p>
+                                      <p class="article-content">Duties: {{offert.duties}}</p>
+                                      <p class="article-content">Remote: {{offert.remote}}</p>
+                                      <p class="article-content">Salary: {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</p>
+                                      <p class="article-content">Author: {{offert.author}} </p>
+                                      <a href="#"><button type="button" class="btn btn-outline-primary">APPLY</button></a>
+                                  <div>
+                                </article>
+                              {% endfor %}
+
+                              {% else %}
+                                <h3>No offerts found.</h3>
+                              {% endif %}
+            </div>
+          </div>
+
+
 
   {% endblock %}
