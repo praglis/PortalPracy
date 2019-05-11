@@ -3,6 +3,9 @@ from .models import Offert
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 
+def ApplyView(request, **kwargs):
+    return render(request, 'offerts/apply.html')
+
 # class based view
 def home(request):
     offerts = Offert.objects.all().order_by('-publication_date')[:3]
