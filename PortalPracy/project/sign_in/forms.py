@@ -6,7 +6,6 @@ from .models import Profile
 # form that inherits from UserCreationForm
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField() #default: required=True
-
     class Meta:
         model = User # model that is going to be affected when form.save() is done
         fields = ['username', 'email', 'password1', 'password2'] # fields that we want in the form and in that order
@@ -17,6 +16,17 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
+
+class ProfileCreationForm(forms.ModelForm):
+    user_groups = (
+        ('C', 'candidate'),
+        ('E', 'employer'),
+        )
+    account_type = forms.ChoiceField(choices=user_groups)
+
+    class Meta:
+        model = Profile
+        fields = ['account_type']
 
 class ProfileUpdateForm(forms.ModelForm):
     phone = forms.CharField(required=False)
