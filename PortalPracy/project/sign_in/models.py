@@ -7,16 +7,7 @@ class Profile(models.Model):
     phone = models.CharField(max_length=15, null=True)
     image = models.ImageField(upload_to = "profile_pictures/", default='kiwi.jpg')
     cv = models.FileField(upload_to = "cvs/", null=True)
-    user_groups = (
-        ('C', 'candidate'),
-        ('E', 'employer'),
-        )
-    account_type = models.CharField(
-        max_length=1,
-        choices=user_groups,
-        default='C',
-        )
-
+    
     def __str__(self):
         return f'{self.user.username} Profile'
 

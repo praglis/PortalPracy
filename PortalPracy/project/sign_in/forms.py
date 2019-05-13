@@ -1,11 +1,12 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
 
 # form that inherits from UserCreationForm
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField() #default: required=True
+
     class Meta:
         model = User # model that is going to be affected when form.save() is done
         fields = ['username', 'email', 'password1', 'password2'] # fields that we want in the form and in that order
@@ -17,16 +18,17 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['username', 'email']
 
-class ProfileCreationForm(forms.ModelForm):
+class AccountTypeForm(forms.Form):
     user_groups = (
-        ('C', 'candidate'),
-        ('E', 'employer'),
+        ('candidates', 'candidate'),
+        ('employers', 'employer'),
         )
     account_type = forms.ChoiceField(choices=user_groups)
 
-    class Meta:
-        model = Profile
-        fields = ['account_type']
+    def set_group(self, new_user):
+        new_user_group = self.cleaned_data.get('account_type')
+        group = Group.objects.get(name=new_user_group)
+        group.user_set.add(new_user)
 
 class ProfileUpdateForm(forms.ModelForm):
     phone = forms.CharField(required=False)
