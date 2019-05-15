@@ -1,43 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
 
-   {% block head %}
-      <title> Portal Pracy </title>
-   {% endblock %}
+{% block head %}
+<title> Portal Pracy </title>
+{% endblock %}
 
-    {% block body %}
-      <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-      <link rel="Stylesheet" type="text/css" href="{% static 'header.css' %}">
-      <header>
-	       <div class="overlay">
-           <h1>Simply The Best</h1>
-           <h3>Reasons for Choosing US</h3>
-           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero nostrum quis, odio veniam itaque ullam debitis qui magnam consequatur ab. Vero nostrum quis, odio veniam itaque ullam debitis qui magnam consequatur ab.</p>
-	          <br>
+{% block body %}
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+<link rel="Stylesheet" type="text/css" href="{% static 'header.css' %}">
+<header>
+  <div class="overlay">
+    <h1>Simply The Best</h1>
+    <h3>Reasons for Choosing US</h3>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero nostrum quis, odio veniam itaque ullam debitis qui magnam consequatur ab. Vero nostrum quis, odio veniam itaque ullam debitis qui magnam consequatur ab.</p>
+    <br>
 
-	          <a href="{% url 'offerts:index' %}"><button>See all jobs offerts</button></a>
-		       </div>
-         </header>
-      <br><br>
-      <h2> Latest oferts: </h2> <br>
-      {% if offerts %}
-        {% for offert in offerts %}
-        <article class="media content-section">
-        <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
-            <div class="media-body">
-                <div class="article-metadata">
-                  <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
-                  <small class="text-muted">Location: {{ offert.agency.country }}, {{offert.agency.location }}</small>
-                </div>
-                <h2><a class="article-title">{{ offert.position }}</a></h2>
-                <br>
-                <a href="{% url 'offerts:offertDetails' offert.id %}"><button type="button" class="btn btn-outline-primary">See more</button></a>
-            <div>
-        </article>
+    <a href="{% url 'offerts:index' %}"><button>See all jobs offerts</button></a>
+  </div>
+</header>
+<br><br>
+<h2> Latest oferts: </h2> <br>
+{% if offerts %}
+{% for offert in offerts %}
+<article class="media content-section">
+  <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
+      <small class="text-muted">Location: {{ offert.agency.country }}, {{offert.agency.location }}</small>
+    </div>
+    <h2><a class="article-title">{{ offert.position }}</a></h2>
+    <br>
+    <a href="{% url 'offerts:offertDetails' offert.id %}"><button type="button" class="btn btn-outline-primary">See more</button></a>
+    <div>
+    </article>
 
-      {% endfor %}
-      {% else %}
-        <h3>No offerts available.</h3>
-      {% endif %}
+    {% endfor %}
+    {% else %}
+    <h3>No offerts available.</h3>
+    {% endif %}
 
     {% endblock %}
