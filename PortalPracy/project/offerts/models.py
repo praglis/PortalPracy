@@ -80,7 +80,8 @@ class Application(models.Model):
     applicant = models.ForeignKey(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length = 100)
     last_name = models.CharField(max_length = 100)
-    email =  models.EmailField(null=True)
+    email = models.EmailField(null=True)
+    cv = models.FileField(upload_to = "cvs/", null=True)
     portfolio_link = models.URLField(null=True)
     message = models.TextField(null=True)
 
