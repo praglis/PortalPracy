@@ -30,7 +30,9 @@
         <div class="collapse navbar-collapse" id="navbarToggle">
           <div class="navbar-nav mr-auto">
             <a class="nav-item nav-link" href="{% url 'offerts:index' %}">Offerts</a>
+            {% ifequal user.groups.all.0.name "employers" %}
             <a class="nav-item nav-link" href="{%url 'offerts:new_offert'%}">Add new offert</a>
+            {% endifequal %}
           </div>
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
