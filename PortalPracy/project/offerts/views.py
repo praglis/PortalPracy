@@ -13,14 +13,14 @@ def home(request):
 
 class OffertListView(ListView):
     model = Offert
-    template_name = 'offerts/index.html' # default: <app>/<model>_<viewtype>.html
+    template_name = 'offerts/offert_list.html' # default: <app>/<model>_<viewtype>.html
     context_object_name = 'offerts'
     ordering = ['-publication_date'] # '-' -> from newest to oldest
     paginate_by = 4
 
 class OffertDetailView(DetailView):
     model = Offert
-    template_name = 'offerts/detailsOffert.html'
+    template_name = 'offerts/offert_details.html'
     context_object_name = 'offert'
 
 class OffertCreateView(LoginRequiredMixin, CreateView):
@@ -45,6 +45,10 @@ class OffertCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+def ApplicationFormCreateView(request):
+
+    return render(request, 'create_application_form.html', {})
+
 class ApplicationCreateView(LoginRequiredMixin, CreateView):
     model = Application
     fields = [  'first_name',
@@ -53,7 +57,7 @@ class ApplicationCreateView(LoginRequiredMixin, CreateView):
                 'portfolio_link',
                 'message',
     ]
-    template_name = "offerts/createApplication.html"
+    template_name = "offerts/create_application.html"
 #nie usuwac tego:
     def form_valid(self, form):
         form.instance.applicant = self.request.user
