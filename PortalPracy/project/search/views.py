@@ -16,6 +16,8 @@ def index(request):
     min_pay= request.GET.get('pay_min')
     tag = request.GET.get('tags')
     remote = request.GET.get('remoteCheck')
+    per_hour = request.GET.get('per_hour');
+    monthly = request.GET.get('monthly');
 
     if is_valid_query(position):
         qs = qs.filter(position__icontains=position)
@@ -37,6 +39,12 @@ def index(request):
 
     if remote == 'on':
         qs = qs.filter(remote = True)
+
+    if per_hour == 'on':
+        qs = qs.filter(salary_type = 'H')
+
+    elif monthly == 'monthly':
+        qs = qs.filter(salary_type = 'M')
 
     context = {
         'queryset' : qs,

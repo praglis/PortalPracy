@@ -7,6 +7,9 @@ def ApplyView(request, **kwargs):
     return render(request, 'offerts/apply.html')
 
 # class based view
+def FormCreateView(request, **kwargs):
+    return render(request, 'offerts/createForm.html')
+
 def home(request):
     offerts = Offert.objects.all().order_by('-publication_date')[:3]
     return render(request, 'home.html', {'offerts': offerts})
