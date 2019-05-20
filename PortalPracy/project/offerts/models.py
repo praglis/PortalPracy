@@ -73,7 +73,7 @@ class Offert(models.Model):
         return self.position + ', ' + self.agency.company.name
 # redirect link
     def get_absolute_url(self):
-        return reverse('offerts:offertDetails', kwargs={'pk':self.pk})
+        return reverse('offerts:createForm', kwargs={'pk':self.pk})
 
 class Application(models.Model):
     offert = models.ForeignKey(Offert, on_delete=models.CASCADE)
@@ -86,7 +86,6 @@ class Application(models.Model):
     message = models.TextField(null=True)
 
     def __str__(self):
-
         return self.first_name + self.last_name +", " + offert.position
 
     def get_absolute_url(self):
