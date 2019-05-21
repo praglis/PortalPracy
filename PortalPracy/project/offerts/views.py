@@ -50,7 +50,7 @@ class OffertCreateView(LoginRequiredMixin, CreateView):
 
 def ApplicationFormCreateView(request):
 
-    return render(request, 'create_application_form.html', {})
+    return render(request, 'offerts/create_application_form.html', {})
 
 class ApplicationCreateView(LoginRequiredMixin, CreateView):
     model = Application
@@ -60,7 +60,7 @@ class ApplicationCreateView(LoginRequiredMixin, CreateView):
                 'portfolio_link',
                 'message',
     ]
-    template_name = "offerts/create_application.html"
+    template_name = "offerts/create_application_form.html"
 #nie usuwac tego:
     def form_valid(self, form):
         form.instance.applicant = self.request.user
