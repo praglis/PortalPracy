@@ -1,14 +1,8 @@
 from django.views.generic import ListView, DetailView, CreateView
-from .models import Offert, Application
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-
-def ApplyView(request, **kwargs):
-    return render(request, 'offerts/apply.html')
-
-# class based view
-def FormCreateView(request, **kwargs):
-    return render(request, 'offerts/createForm.html')
+from .models import Offert, Application
+from .forms import ApplicationForm
 
 def home(request):
     offerts = Offert.objects.all().order_by('-publication_date')[:3]
@@ -49,8 +43,15 @@ class OffertCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 def ApplicationFormCreateView(request):
-
+    if request.method == "POST":
+        form = ApplicationForm(request.POST)
+        if form.is_valid(request.POST):
+            form.save()
+            return redirect('offerts/application_form')
     return render(request, 'offerts/create_application_form.html', {})
+
+def ApplyView(request, **kwargs):
+    return render(request, 'offerts/apply.html')
 
 class ApplicationCreateView(LoginRequiredMixin, CreateView):
     model = Application

@@ -92,8 +92,8 @@ class Application(models.Model):
     def get_absolute_url(self):
         return reverse('offerts:index')
 
-class CustomField(models.Model):
-    field_name = models.CharField(max_length = 500)
+class CustomQuestion(models.Model):
+    question = models.CharField(max_length = 500)
     answer_types = (
         ('T', 'text'),
         ('R', 'radio'),
@@ -103,12 +103,15 @@ class CustomField(models.Model):
         max_length=1,
         choices=answer_types,
         default='T',
+        null = True
     )
     #choices for radio and checkbox lists, coma separated
     answer_choices =  models.TextField(null = True)
 
+    def __str__(self):
+        return self.question
 
 class CustomApplication(models.Model):
     offert = models.ForeignKey(Offert, on_delete=models.CASCADE)
-    custom_fields = models.ManyToManyField('CustomField')
+    custom_fields = models.ManyToManyField('CustomQuestion')
     #chosen_standard_fields = models.ManyToManyField(StandardField, on_delete=models.CASCADE)

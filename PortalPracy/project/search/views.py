@@ -50,4 +50,4 @@ def index(request):
         'queryset' : qs,
         'tag_set' : tag_set
     }
-    return render(request, 'search/index.html', context)
+    return render(request, 'search/search.html', context)
