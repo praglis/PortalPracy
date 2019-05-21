@@ -7,7 +7,7 @@
 
    {% block body %}
       <h3>Create application form for your offert. </h3>
-      <button type="button" class="btn btn-success mb-2">Skip this step</button>
+      <a href="{% url 'manager:manager-my' user.username %}"><button type="button" class="btn btn-success mb-2">Skip this step</button></a>
       <hr>
       <form method="GET" >
         <div class="form-group">

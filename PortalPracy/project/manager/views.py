@@ -43,7 +43,7 @@ class OffertUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class OffertDeleteView(LoginRequiredMixin,UserPassesTestMixin, DeleteView):
      model = Offert
-     success_url = '/offerts/'
+     success_url = '/manage/user/<str:username>/'
      template_name = "manager/offert_confirm_delete.html"
 
      def form_valid(self, form):
