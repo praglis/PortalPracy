@@ -15,7 +15,7 @@
             {{ form|crispy }}
         </fieldset>
         <div class="form-group">
-          <button class="btn btn-outline-info" " type="submit">Add</button>
+          <a href="{% url 'offerts:application_form' %}"><button class="btn btn-outline-info" type="submit">Add</button></a>
         </div>
     </form>
 {% endblock %}
