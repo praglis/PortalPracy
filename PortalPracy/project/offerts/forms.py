@@ -3,14 +3,13 @@ from django import forms
 from .models import CustomQuestion, Offert
 
 class ApplicationForm(forms.ModelForm):
-    #self.fields['question'].label ='Your question:'
-    #self.fields['answer_type'].label = 'Choose the type of answer you would like to get:'
+    answer_count = forms.IntegerField(label='Number of answers:');
     class Meta:
         model = CustomQuestion
-        fields = ['question', 'answer_type']
+        fields = ['question', 'answer_type', 'answer_count']
         labels = {
             "question": "Your question:",
-            "answer_type": "Choose the type of answer you would like to get:"
+            "answer_type": "Answer type:"
         }
 
     def is_valid(self, request):

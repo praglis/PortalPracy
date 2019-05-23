@@ -51,7 +51,8 @@ def ApplicationFormCreateView(request):
     if request.method == "POST":
         form = ApplicationForm(request.POST)
         if form.is_valid(request):
-            form.save()
+            if form.save().answer_type != 'T':
+                return render(request, 'offerts/application_answers.html', {'answer_count' : form.answer_count})
     else:
         form = ApplicationForm()
 
