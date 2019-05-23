@@ -94,7 +94,7 @@ class Application(models.Model):
         return reverse('offerts:index')
 
 class CustomQuestion(models.Model):
-    offert = models.ForeignKey(Offert, on_delete=models.CASCADE, null=True)
+    offert = models.ForeignKey(Offert, on_delete=models.CASCADE)
     question = models.CharField(max_length = 500)
     answer_types = (
         ('T', 'text'),

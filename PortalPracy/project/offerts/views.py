@@ -42,8 +42,9 @@ class OffertCreateView(LoginRequiredMixin, CreateView):
 #nie usuwac tego:
     def form_valid(self, form):
         form.instance.author = self.request.user
+        saved_data = super().form_valid(form)
         self.request.session['new_offert_id'] = form.instance.id
-        return super().form_valid(form)
+        return saved_data
 
 @login_required
 def ApplicationFormCreateView(request):
