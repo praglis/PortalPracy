@@ -8,6 +8,6 @@ class ApplicationForm(forms.ModelForm):
         model = CustomQuestion
         fields = ['question', 'answer_type']
 
-    def is_valid(self):
-        form.instance.offert = request.session.get('new_offert_id')
-        return super().is_valid(form)
+    def is_valid(self, request):
+        self.offert = request.session.get('new_offert_id')
+        return super().is_valid()

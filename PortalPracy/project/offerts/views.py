@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .models import Offert, Application
@@ -41,13 +42,14 @@ class OffertCreateView(LoginRequiredMixin, CreateView):
 #nie usuwac tego:
     def form_valid(self, form):
         form.instance.author = self.request.user
-        request.session['new_offert_id'] = form.instance.offert_id
+        self.request.session['new_offert_id'] = form.instance.id
         return super().form_valid(form)
 
+@login_required
 def ApplicationFormCreateView(request):
     if request.method == "POST":
         form = ApplicationForm(request.POST)
-        if form.is_valid():
+        if form.is_valid(request):
             form.save()
             #return redirect('offerts/application_form')
     else:
@@ -58,6 +60,7 @@ def ApplicationFormCreateView(request):
     }
     return render(request, 'offerts/create_application_form.html', context)
 
+@login_required
 def ApplyView(request, **kwargs):
     return render(request, 'offerts/apply.html')
 
