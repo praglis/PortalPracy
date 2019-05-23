@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from .models import Offert, Application
+from .models import Offert, Application, CustomQuestion
 from .forms import ApplicationForm
 
 def home(request):
@@ -52,12 +52,16 @@ def ApplicationFormCreateView(request):
         form = ApplicationForm(request.POST)
         if form.is_valid(request):
             form.save()
-            #return redirect('offerts/application_form')
     else:
         form = ApplicationForm()
 
+    offert_id = request.session.get('new_offert_id')
+    offert = Offert.objects.get(id=offert_id)
+    questions = CustomQuestion.objects.filter(offert=offert)
+
     context = {
         'form': form,
+        'questions': questions
     }
     return render(request, 'offerts/create_application_form.html', context)
 
