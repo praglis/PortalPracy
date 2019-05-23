@@ -11,6 +11,7 @@ class Company(models.Model):
 
     class Meta:
         verbose_name_plural = "Companies"
+
     def __str__(self):
         return self.name
 
@@ -93,11 +94,12 @@ class Application(models.Model):
         return reverse('offerts:index')
 
 class CustomQuestion(models.Model):
+    offert = models.ForeignKey(Offert, on_delete=models.CASCADE, null=True)
     question = models.CharField(max_length = 500)
     answer_types = (
         ('T', 'text'),
-        ('R', 'radio'),
-        ('C', 'checkbox'),
+        ('R', 'single-choice'),
+        ('C', 'multiple-choice'),
     )
     answer_type = models.CharField(
         max_length=1,
@@ -110,8 +112,3 @@ class CustomQuestion(models.Model):
 
     def __str__(self):
         return self.question
-
-class CustomApplication(models.Model):
-    offert = models.ForeignKey(Offert, on_delete=models.CASCADE)
-    custom_fields = models.ManyToManyField('CustomQuestion')
-    #chosen_standard_fields = models.ManyToManyField(StandardField, on_delete=models.CASCADE)

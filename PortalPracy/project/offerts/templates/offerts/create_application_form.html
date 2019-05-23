@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
    {% block head %}
       <title> Portal Pracy </title>
@@ -9,24 +10,19 @@
       <h3>Create application form for your offert. </h3>
       <a href="{% url 'manager:manager-my' user.username %}"><button type="button" class="btn btn-success mb-2">Skip this step</button></a>
       <hr>
-      <form method="POST">
+      <form method="POST" novalidate>
         {% csrf_token %}
         <div class="form-group">
           <br>
           <label for="form_field">Form field name/text:</label>
-          <input name="question" type="text" class="form-control col-5" id="form_field" placeholder="Name your custom field">
+          {{ form.question|as_crispy_field }}
           <small id="emailHelp" class="form-text text-muted">Write what you want kind of information you would like to receive from candidate.</small>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="field_type">Choose the type of answer you would like to get:</label>
-            <select class="form-control" name="answer-type">
-                <option selected>Choose your option</option>
-                <option value="text">Text Field</option>
-                <option value="radio">One choice from possible ones</option>
-                <option value="checkbox">Multiple choices</option>
-            </select>
+            {{ form.answer_type|as_crispy_field }}
             <br>
             <button type="submit" class="btn btn-primary">Add question</button>
           </div>

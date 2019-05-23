@@ -1,44 +1,44 @@
 {% extends 'base.html' %}
 {% load static %}
 
-   {% block head %}
-      <title> Portal Pracy </title>
-   {% endblock %}
+{% block head %}
+<title> Portal Pracy </title>
+{% endblock %}
 
-    {% block body %}
+{% block body %}
 
-        <main role="main" class="container">
+<main role="main" class="container">
 
-            <h3>Apply for the job:</h3> <br>
-               <form method="GET">
-                 <!-- position -->
-                 <div class="form-row">
-                   <div class="form-group col-md-8 col-lg-6">
-                           <label for="email">Contact email:</label>
-                           <input class="form-control" type="text" name="email" placeholder="{{user.email}}"> <br>
-                           <label for="firstName">First name:</label>
-                           <input class="form-control" type="text" name="firstName" placeholder="{{user.first_name}}"> <br>
-                           <label for="lastName">Last name:</label>
-                           <input class="form-control" type="text" name="lastName" placeholder="{{user.last_name}}"> <br>
-                           <label for="cv">Your CV:</label>
-                           <input type="file" class="form-control-file" id="cv" placeholder="...">
+  <h3>Apply for the job:</h3> <br>
+  <form method="GET">
+    <!-- position -->
+    <div class="form-row">
+      <div class="form-group col-md-8 col-lg-6">
+        <label for="email">Contact email:</label>
+        <input class="form-control" type="text" name="email" placeholder="{{user.email}}"> <br>
+        <label for="firstName">First name:</label>
+        <input class="form-control" type="text" name="firstName" placeholder="{{user.first_name}}"> <br>
+        <label for="lastName">Last name:</label>
+        <input class="form-control" type="text" name="lastName" placeholder="{{user.last_name}}"> <br>
+        <label for="cv">Your CV:</label>
+        <input type="file" class="form-control-file" id="cv" placeholder="...">
 
-                           <hr/><br>
-                           <h4>Tell us something more:</h4><br>
-                           <label for="portfolioLink">Link to your portfolio:</label>
-                           <input class="form-control" type="text" name="portfolioLink" > <br>
-                           <label for="message">Message:</label>
-                           <textarea class="form-control message-form" name="message" rows="5" cols="80"></textarea>
+        <hr/><br>
+        <h4>Tell us something more:</h4><br>
+        <label for="portfolioLink">Link to your portfolio:</label>
+        <input class="form-control" type="text" name="portfolioLink" > <br>
+        <label for="message">Message:</label>
+        <textarea class="form-control message-form" name="message" rows="5" cols="80"></textarea>
 
-                   </div>
+      </div>
 
-                 </div>
-
-
-                <br>
-                <button type="submit" class="btn btn-primary">Apply</button>
-               </form>
+    </div>
 
 
+    <br>
+    <button type="submit" class="btn btn-primary">Apply</button>
+  </form>
 
-    {% endblock %}
+
+
+  {% endblock %}

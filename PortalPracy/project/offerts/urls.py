@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import OffertListView, OffertDetailView, OffertCreateView, ApplicationCreateView,ApplicationFormCreateView
+from .views import OffertListView, OffertDetailView, OffertCreateView, ApplicationCreateView, ApplicationFormCreateView
 from . import views
 
 app_name = 'offerts'
