@@ -36,7 +36,7 @@
           </div>
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="{%url 'search:index'%}">Search</a>
+            <a class="nav-item nav-link" href="{%url 'search:index'%}">Search <i class="fa fa-search bg-transparent"></i></a>
             {% ifequal user.groups.all.0.name "employers" %}
             <a class="nav-item nav-link"href="{% url 'manager:manager-my' user.username %}">My offerts</a>
             {% endifequal %}
