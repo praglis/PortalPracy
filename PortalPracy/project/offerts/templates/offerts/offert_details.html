@@ -17,15 +17,19 @@
             </div>
             <h1><a class="article-title">{{ offert.position }}</a></h1>
             <hr>
-            Must have:
+            <p class="article-content"><strong>Location:</strong> <br> {{ offert.agency.country }}, {{offert.agency.location }}</p>
+            <p class="article-content"><strong>About:</strong> <br> {{offert.about}}</p>
+            <strong>Must have:</strong>
+            <ul>
               {% for tag in offert.must_have.all %}
-                {{tag}}
-              {% endfor %} <br/>
-            <p class="article-content"><br>Location: {{ offert.agency.country }}, {{offert.agency.location }}</p>
-            <p class="article-content">Duties: {{offert.duties}}</p>
-            <p class="article-content">Remote: {{offert.remote}}</p>
-            <p class="article-content">Salary: {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</p>
-            <p class="article-content">Author: {{offert.author}} </p>
+                <li>{{tag}}</li>
+              {% endfor %}
+            </ul>
+            <p class="article-content"><br><strong>Nice to have:</strong> <br> {{offert.nice_to_have}}</p>
+            <p class="article-content"><strong>Duties:</strong> <br> {{offert.duties}}</p>
+            <p class="article-content"><strong>Remote:</strong> <br> {{offert.remote}}</p>
+            <p class="article-content"><strong>Salary:</strong> <br> {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</p>
+            <p class="article-content"><strong>Benefits:</strong> <br> {{offert.benefits}}</p>
             <a href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-outline-primary">APPLY</button></a>
 
         <div>
