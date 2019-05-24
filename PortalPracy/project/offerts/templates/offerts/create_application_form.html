@@ -15,7 +15,7 @@
   <div class="form-group">
     <br>
     {{ form.question|as_crispy_field }}
-    <small id="emailHelp" class="form-text text-muted">Write what you want kind of information you would like to receive from candidate.</small>
+    <small id="questionHelp" class="form-text text-muted">Write what you want kind of information you would like to receive from candidate.</small>
   </div>
 
   <div class="form-row">
@@ -26,12 +26,30 @@
     </div>
   </div>
 </form>
+
 <hr>
 
-<h4>Your Form:</h4>
+<h4>Your Form:</h4> <br>
 <ol>
   {% for question in questions %}
   <li><p>{{ question.question }}</p></li>
+    {% if question.answer_type == 'T' %}
+      <input type="text"/>
+      <br><br>
+    {% endif %}
+
+    {% if question.answer_type == 'R' %}
+      <!-- display radio button options for this question-->
+      <br><br>
+    {% endif %}
+
+    {% if question.answer_type == 'C' %}
+      <!-- display checkbox options for this question-->
+      <br><br>
+    {% endif %}
   {% endfor %}
 </ol>
+<button type="button" name="saveForm">Create my form</button>
+<br>
+<br>
 {% endblock %}
