@@ -32,8 +32,8 @@
     </div>
     <h2><a class="article-title">Position: {{ offert.position }}</a></h2>
     <hr>
-    <h6><a class="article-title">Location: {{ offert.agency.country }}, {{offert.agency.location }}</a></h6>
-    <h6><a class="article-title">Salary: {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</a></h6>
+    <h6><a class="article-title"><strong>Location:</strong> {{ offert.agency.country }}, {{offert.agency.location }}</a></h6>
+    <h6><a class="article-title"><strong>Salary:</strong> {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</a></h6>
     <br>
     <a href="{% url 'offerts:offert_details' offert.id %}"><button type="button" class="btn btn-outline-primary">Find out more</button></a>
     <div>
