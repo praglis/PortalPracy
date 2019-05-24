@@ -14,28 +14,19 @@
       <form method="GET">
         <!-- position -->
         <div class="form-row">
-          <div class="form-group col-12 ">
-            <div class="input-group-append">
-              <input class="form-control py-2 border-right-0 border" type="search" name="position_name" placeholder="Position name contains...">
-              <span class = "input-group">
-                <div class="input-group-text bg-transparent">
-                  <i class="fa fa-search"></i>
-                </div>
-              </span>
+          <div class="form-group col-8 ">
+            <div class="input-group">
+              <input class="form-control py-2 border" type="search" name="position_name" placeholder="Position name contains...">
+
             </div>
           </div>
         </div>
 
         <!-- location -->
         <div class="form-row">
-          <div class="form-group col-12">
-            <div class="input-group-append">
-              <input class="form-control py-2 border-right-0 border" type="search" name="location_name" placeholder="Location name contains...">
-              <span class = "input-group">
-                <div class="input-group-text bg-transparent">
-                  <i class="fa fa-search"></i>
-                </div>
-              </span>
+          <div class="form-group col-8">
+            <div class="input-group">
+              <input class="form-control py-2 border" type="search" name="location_name" placeholder="Location name contains...">
             </div>
           </div>
         </div>
@@ -103,16 +94,22 @@
         </div>
         <h1><a class="article-title">{{ offert.position }}</a></h1>
         <hr>
-        Must have:
-        {% for tag in offert.must_have.all %}
-        {{tag}}
-        {% endfor %} <br>
-        <p class="article-content">Location: {{ offert.agency.country }}, {{offert.agency.location }}</p>
-        <p class="article-content">Duties: {{offert.duties}}</p>
-        <p class="article-content">Remote: {{offert.remote}}</p>
-        <p class="article-content">Salary: {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</p>
-        <p class="article-content">Author: {{offert.author}} </p>
-        <a href="#"><button type="button" class="btn btn-outline-primary">APPLY</button></a>
+        <p class="article-content"><strong>Location:</strong> <br> {{ offert.agency.country }}, {{offert.agency.location }}</p>
+        <p class="article-content"><strong>Salary:</strong> <br> {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</p>
+
+        <strong>Must have:</strong>
+        <ul>
+          {% for tag in offert.must_have.all %}
+            <li>{{tag}}</li>
+          {% endfor %}
+        </ul><br>
+
+        <p class="article-content"><strong>Remote:</strong> <br> {{offert.remote}}</p>
+
+
+
+        <a href="{% url 'offerts:offert_details' offert.id %}"><button type="button" class="btn btn-outline-primary">Find out more</button></a>
+        <a  href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-outline-success">APPLY</button></a>
         <div>
         </article>
         {% endfor %}

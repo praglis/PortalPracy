@@ -7,7 +7,6 @@
 
     {% block body %}
       <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-      <link rel="Stylesheet" type="text/css" href="{% static 'offerts/index.css' %}">
       <h1> Job offerts: </h1>
       <hr>
       {% if offerts %}
@@ -19,7 +18,10 @@
                   <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
                   <small class="text-muted">Location: {{ offert.agency.country }}, {{offert.agency.location }}</small>
                 </div>
-                <h2><a class="article-title">{{ offert.position }}</a></h2>
+                <h2><a class="article-title">Position: {{ offert.position }}</a></h2>
+                <hr>
+                <h6><a class="article-title"><strong>Location:</strong> {{ offert.agency.country }}, {{offert.agency.location }}</a></h6>
+                <h6><a class="article-title"><strong>Salary:</strong> {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</a></h6>
                 <br>
                 <a href="{% url 'offerts:offert_details' offert.id %}"><button type="button" class="btn btn-outline-primary">See more</button></a>
             <div>
@@ -35,7 +37,7 @@
         {% for num in page_obj.paginator.page_range %}
           {% if page_obj.number == num %}
             <a class="btn btn-info mb-4" href="?page={{num}}">{{num}}</a>
-          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
             <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
           {% endif %}
         {% endfor %}

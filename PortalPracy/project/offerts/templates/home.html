@@ -19,7 +19,8 @@
   </div>
 </header>
 <br><br>
-<h2> Latest oferts: </h2> <br>
+
+<h2> Latest job offerts: </h2> <br>
 {% if offerts %}
 {% for offert in offerts %}
 <article class="media content-section">
@@ -27,11 +28,14 @@
   <div class="media-body">
     <div class="article-metadata">
       <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
-      <small class="text-muted">Location: {{ offert.agency.country }}, {{offert.agency.location }}</small>
+      <small class="text-muted">Published: {{ offert.publication_date}}</small>
     </div>
-    <h2><a class="article-title">{{ offert.position }}</a></h2>
+    <h2><a class="article-title">Position: {{ offert.position }}</a></h2>
+    <hr>
+    <h6><a class="article-title"><strong>Location:</strong> {{ offert.agency.country }}, {{offert.agency.location }}</a></h6>
+    <h6><a class="article-title"><strong>Salary:</strong> {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</a></h6>
     <br>
-    <a href="{% url 'offerts:offert_details' offert.id %}"><button type="button" class="btn btn-outline-primary">See more</button></a>
+    <a href="{% url 'offerts:offert_details' offert.id %}"><button type="button" class="btn btn-outline-primary">Find out more</button></a>
     <div>
     </article>
 
