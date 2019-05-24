@@ -15,7 +15,7 @@ class OffertListView(ListView):
     template_name = 'offerts/offert_list.html' # default: <app>/<model>_<viewtype>.html
     context_object_name = 'offerts'
     ordering = ['-publication_date'] # '-' -> from newest to oldest
-    paginate_by = 4
+    paginate_by = 6
 
 class OffertDetailView(DetailView):
     model = Offert
