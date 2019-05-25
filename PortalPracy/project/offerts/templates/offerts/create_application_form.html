@@ -8,7 +8,7 @@
 
 {% block body %}
 <h3>Create application form for your offert. </h3>
-<a href="{% url 'manager:manager-my' user.username %}"><button type="button" class="btn btn-success mb-2">Skip this step</button></a>
+<a href="{% url 'manager:manager-my' user.username %}"><button type="button" class="btn btn-secondary mb-2">Skip this step</button></a>
 <hr>
 <form method="POST" novalidate>
   {% csrf_token %}
@@ -17,13 +17,16 @@
     {{ form.question|as_crispy_field }}
     <small id="questionHelp" class="form-text text-muted">Write what you want kind of information you would like to receive from candidate.</small>
   </div>
-
-  <div class="form-row">
-    <div class="form-group">
-      {{ form.answer_type|as_crispy_field }}
-      <br>
-      <button type="submit" class="btn btn-primary">Add question</button>
-    </div>
+  <div class="form-group">
+    {{ form.answer_type|as_crispy_field }}
+    <small id="emailHelp" class="form-text text-muted">Choose the type of answer you would like to get.</small>
+    <br>
+  </div>
+  <div class="form-group">
+    {{ form.answer_count|as_crispy_field }}
+    <small id="emailHelp" class="form-text text-muted">How many possible answers want you to add? (Only for single-choice or multiple-choice answer types)</small>
+    <br>
+    <button type="submit" class="btn btn-primary">Add question</button>
   </div>
 </form>
 
@@ -49,7 +52,7 @@
     {% endif %}
   {% endfor %}
 </ol>
-<button type="button" name="saveForm">Create my form</button>
+<button type="submit" class="btn btn-success">Create my form</button>
 <br>
 <br>
 {% endblock %}

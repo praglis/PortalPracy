@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+<title> Portal Pracy </title>
+{% endblock %}
+
+{% block body %}
+<h3>Write possible answers for your question.</h3>
+<a href="#"><button type="button" class="btn btn-danger mb-2">Cancel</button></a>
+<hr>
+<form method="POST" novalidate>
+  {% csrf_token %}
+  <fieldset class="form-group">
+  {% for element in form %}
+  <div class="form-group">
+    <br>
+    {{ element|crispy }}
+  </div>
+  </fieldset>
+  {% endfor %}
+</form>
+{% endblock %}
