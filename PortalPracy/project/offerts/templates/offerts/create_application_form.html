@@ -8,7 +8,7 @@
 
 {% block body %}
 <h3>Create application form for your offert. </h3>
-<a href="{% url 'manager:manager-my' user.username %}"><button type="button" class="btn btn-success mb-2">Skip this step</button></a>
+<a href="{% url 'manager:manager-my' user.username %}"><button type="button" class="btn btn-secondary mb-2">Skip this step</button></a>
 <hr>
 <form method="POST" novalidate>
   {% csrf_token %}
@@ -52,7 +52,7 @@
     {% endif %}
   {% endfor %}
 </ol>
-<button type="button" name="saveForm">Create my form</button>
+<button type="submit" class="btn btn-success">Create my form</button>
 <br>
 <br>
 {% endblock %}

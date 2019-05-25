@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .models import Offert, Application, CustomQuestion
-from .forms import ApplicationForm
+from .forms import ApplicationForm, AnswerField
 
 def home(request):
     offerts = Offert.objects.all().order_by('-publication_date')[:3]
@@ -52,7 +52,7 @@ def ApplicationFormCreateView(request):
         form = ApplicationForm(request.POST)
         if form.is_valid(request):
             if form.save().answer_type != 'T':
-                return render(request, 'offerts/application_answers.html', {'answer_count' : form.answer_count})
+                return ApplicationAnswersView(request, range(form.cleaned_data.get('answer_count')))
     else:
         form = ApplicationForm()
 
@@ -65,6 +65,27 @@ def ApplicationFormCreateView(request):
         'questions': questions
     }
     return render(request, 'offerts/create_application_form.html', context)
+
+def ApplicationAnswersView(request, answer_count):
+    '''
+    answers = []
+    for i in answer_count:
+        answers.append('answer')
+'''
+    form = []
+    if request.method == "POST":
+        for answer in answer_count:
+            form.append(AnswerField(request.POST))
+        #if form.is_valid():
+            #form.save()
+    else:
+        for answer in answer_count:
+            form.append(AnswerField())
+    context = {
+        'answer_count' : answer_count,
+        'form' : form
+    }
+    return render(request, 'offerts/application_answers.html', context)
 
 @login_required
 def ApplyView(request, **kwargs):
