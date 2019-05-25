@@ -31,6 +31,6 @@ def get_answer_set(POST_data, answers):
 '''
 
 class AnswerField(forms.Form):
-    answer = forms.CharField(max_length=500)
+    possible_answer = forms.CharField(max_length=500)
     class Meta:
-        fields = ['answer']
+        fields = ['possible_answer']
