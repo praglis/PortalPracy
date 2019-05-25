@@ -1,34 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
 
-   {% block head %}
-      <title> Portal Pracy </title>
-   {% endblock %}
+{% block head %}
+<title> Portal Pracy </title>
+{% endblock %}
 
-    {% block body %}
-      <link rel="Stylesheet" type="text/css" href="{% static 'offerts/index.css' %}">
-      <h1>View your offerts:</h1>
-      <hr>
-      {% if offerts %}
-        {% for offert in offerts %}
-        <article class="media content-section">
-        <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
-            <div class="media-body">
-                <div class="article-metadata">
-                  <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
-                  <small class="text-muted">Location: {{ offert.agency.country }}, {{offert.agency.location }}</small>
-                </div>
-                <h2><a class="article-title">{{ offert.position }}</a></h2>
-                <br>
-                <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
-                <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-outline-primary">Update</button></a>
-                <a href="{% url 'manager:manager-replies' offert.id %}"><button type="button" class="btn btn-outline-warning">See replies</button></a>
-            <div>
-        </article>
+{% block body %}
+<link rel="Stylesheet" type="text/css" href="{% static 'offerts/index.css' %}">
+<h1>View your offerts:</h1>
+<hr>
+{% if offerts %}
+{% for offert in offerts %}
+<article class="media content-section">
+  <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
+      <small class="text-muted">Location: {{ offert.agency.country }}, {{offert.agency.location }}</small>
+    </div>
+    <h2><a class="article-title">{{ offert.position }}</a></h2>
+    <br>
+    <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
+    <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-outline-primary">Update</button></a>
+    <a href="{% url 'manager:manager-replies' offert.id %}"><button type="button" class="btn btn-outline-warning">See replies</button></a>
+  </div>
+</article>
 
-        {% endfor %}
-      {% else %}
-        <h3>No offerts available.</h3>
-      {% endif %}
+{% endfor %}
+{% else %}
+<h3>No offerts available.</h3>
+{% endif %}
 
-    {% endblock %}
+{% endblock %}

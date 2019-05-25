@@ -8,17 +8,18 @@
 
 {% block body %}
 <h3>Write possible answers for your question.</h3>
-<a href="#"><button type="button" class="btn btn-danger mb-2">Cancel</button></a>
 <hr>
 <form method="POST" novalidate>
   {% csrf_token %}
-  <fieldset class="form-group">
+
   {% for element in form %}
   <div class="form-group">
-    <br>
-    {{ element|crispy }}
+    {{ element.answer|as_crispy_field }}
   </div>
-  </fieldset>
   {% endfor %}
+
+  <br>
+  <a href="#"><button type="button" class="btn btn-danger mb-5">Cancel</button></a>
+  <button type="submit" class="btn btn-success mb-5">Submit</button>
 </form>
 {% endblock %}

@@ -15,22 +15,15 @@ class ApplicationForm(forms.ModelForm):
     def is_valid(self, request):
         offert_id = request.session.get('new_offert_id')
         self.instance.offert = Offert.objects.get(id=offert_id)
+        request.session['new_question_id'] = self.instance.id
         return super().is_valid()
-'''
-def get_answer_set(POST_data, answers):
 
-
-    class AnswerSet(forms.Form):
-        class Meta:
-            fields = answers
-
-        def save(self):
-            pass
-            #write answers into model
-    return AnswerSet(POST_data)
-'''
+    def save(self, answer=None):
+        if answer:
+            self.instance.answer_choices += answer.cleaned_data.get('answer')
+        return super().save()
 
 class AnswerField(forms.Form):
-    possible_answer = forms.CharField(max_length=500)
+    answer = forms.CharField(max_length=500)
     class Meta:
-        fields = ['possible_answer']
+        fields = ['answer']
