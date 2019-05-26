@@ -50,7 +50,7 @@ class OffertCreateView(LoginRequiredMixin, CreateView):
 def ApplicationFormCreateView(request):
     if request.method == "POST":
         form = ApplicationForm(request.POST)
-        if form.is_valid(request):
+        if form.is_valid(request=request):
             if form.save().answer_type != 'T':
                 request.session['answer_count'] = form.cleaned_data.get('answer_count')
                 request.session['new_question_id'] = form.instance.id
@@ -78,6 +78,7 @@ def ApplicationAnswersView(request):
         question = CustomQuestion.objects.get(id=question_id)
         question_form = ApplicationForm(instance=question)
         answer_form = AnswerForm(request.POST, field_count=answer_count)
+        print("prevalid")
         if answer_form.is_valid():
             print('is_valid')
             question_form.save(answers=answer_form)

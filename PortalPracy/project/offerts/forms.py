@@ -12,7 +12,10 @@ class ApplicationForm(forms.ModelForm):
             "answer_type": "Answer type:"
         }
 
-    def is_valid(self, request):
+    def is_valid(self, request=None):
+        if request == None:
+            self.fields['answer_count'] = 0 #form modification is needed to assure is_valid() fun works properly
+            return super().is_valid()
         offert_id = request.session.get('new_offert_id')
         self.instance.offert = Offert.objects.get(id=offert_id)
         request.session['new_question_id'] = self.instance.id
@@ -21,14 +24,15 @@ class ApplicationForm(forms.ModelForm):
     def save(self, answers=None):
         print('ApplicationForm.save()')
         if not answers == None:
-            print('wtf2')
-            self.instance.answer_choices = "|"
+            print('>>> there are answers')
+            self.instance.answer_choices = ""
             for i in range(1, len(answers.fields)+1):
                 print(f'type(self.instance.answer_choices): {type(self.instance.answer_choices)}')
                 print(f'type(answers.cleaned_data.get(Answer 1)): {type(answers.cleaned_data.get("Answer 1"))}')
                 self.instance.answer_choices += answers.cleaned_data.get('Answer %s' % i) + "|"
-            super().save()
+            super().save(commit=False)
             return None
+        print(">>> there are't any answers")
         return super().save()
 '''
 class AnswerField(forms.Form):
