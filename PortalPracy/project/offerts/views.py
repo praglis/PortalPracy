@@ -85,6 +85,7 @@ def ApplicationAnswersView(request, answer_count):
         'answer_count' : answer_count,
         'form' : form
     }
+    # CustomQuestion.objects.filter(pk=some_value).update(answer_choices='some value')
     return render(request, 'offerts/application_answers.html', context)
 
 @login_required
