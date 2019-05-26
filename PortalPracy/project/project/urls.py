@@ -23,8 +23,10 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
+admin.autodiscover()
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='administrator'),
     path('offerts/', include('offerts.urls')),
     path('manage/', include('manager.urls')),
     path('search/', include('search.urls')),
@@ -46,6 +48,7 @@ urlpatterns = [
     path('password-reset-complete/',
           auth_views.PasswordResetCompleteView.as_view(template_name='sign_in/password_reset_complete.html'),
           name='password_reset_complete'),
+
 ]
 
 

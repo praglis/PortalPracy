@@ -18,12 +18,28 @@ class ApplicationForm(forms.ModelForm):
         request.session['new_question_id'] = self.instance.id
         return super().is_valid()
 
-    def save(self, answer=None):
-        if answer:
-            self.instance.answer_choices += answer.cleaned_data.get('answer')
+    def save(self, answers=None):
+        print('ApplicationForm.save()')
+        if not answers == None:
+            print('wtf2')
+            self.instance.answer_choices = "|"
+            for i in range(1, len(answers.fields)+1):
+                print(f'type(self.instance.answer_choices): {type(self.instance.answer_choices)}')
+                print(f'type(answers.cleaned_data.get(Answer 1)): {type(answers.cleaned_data.get("Answer 1"))}')
+                self.instance.answer_choices += answers.cleaned_data.get('Answer %s' % i) + "|"
+            super().save()
+            return None
         return super().save()
-
+'''
 class AnswerField(forms.Form):
     answer = forms.CharField(max_length=500)
     class Meta:
         fields = ['answer']
+'''
+class AnswerForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        field_count = kwargs.pop('field_count')
+        super(AnswerForm, self).__init__(*args, **kwargs)
+        print("init AnswerForm")
+        for i in range(1,field_count+1):
+            self.fields['Answer %s' % i] = forms.CharField(max_length=500)

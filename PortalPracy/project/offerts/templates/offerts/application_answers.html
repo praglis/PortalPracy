@@ -11,12 +11,10 @@
 <hr>
 <form method="POST" novalidate>
   {% csrf_token %}
-
-  {% for element in form %}
-  <div class="form-group">
-    {{ element.answer|as_crispy_field }}
-  </div>
-  {% endfor %}
+  <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Apply for a job:</legend>
+      {{ form|crispy }}
+  </fieldset>
 
   <br>
   <a href="#"><button type="button" class="btn btn-danger mb-5">Cancel</button></a>
