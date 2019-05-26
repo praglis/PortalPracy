@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .models import Offert, Application, CustomQuestion
-from .forms import ApplicationForm, AnswerField
+from .forms import ApplicationForm, AnswerForm
 
 def home(request):
     offerts = Offert.objects.all().order_by('-publication_date')[:3]
@@ -39,20 +39,24 @@ class OffertCreateView(LoginRequiredMixin, CreateView):
 
     template_name = "offerts/add_offert.html"
 
-#nie usuwac tego:
     def form_valid(self, form):
         form.instance.author = self.request.user
         saved_data = super().form_valid(form)
         self.request.session['new_offert_id'] = form.instance.id
         return saved_data
 
+
 @login_required
 def ApplicationFormCreateView(request):
     if request.method == "POST":
         form = ApplicationForm(request.POST)
-        if form.is_valid(request):
+        if form.is_valid(request=request):
             if form.save().answer_type != 'T':
-                return ApplicationAnswersView(request, range(form.cleaned_data.get('answer_count')))
+                request.session['answer_count'] = form.cleaned_data.get('answer_count')
+                request.session['new_question_id'] = form.instance.id
+                print('answer_count in AFCV:', request.session['answer_count'])
+                print('new_question_id in AFCV:', request.session['new_question_id'])
+                return redirect('offerts:set_answers')
     else:
         form = ApplicationForm()
 
@@ -66,27 +70,58 @@ def ApplicationFormCreateView(request):
     }
     return render(request, 'offerts/create_application_form.html', context)
 
-def ApplicationAnswersView(request, answer_count):
-    '''
-    answers = []
-    for i in answer_count:
-        answers.append('answer')
-'''
-    form = []
+@login_required
+def ApplicationAnswersView(request):
+    answer_count = request.session.get('answer_count')
+    question_id = request.session.get('new_question_id')
     if request.method == "POST":
+        question = CustomQuestion.objects.get(id=question_id)
+        question_form = ApplicationForm(instance=question)
+        answer_form = AnswerForm(request.POST, field_count=answer_count)
+        print("prevalid")
+        if answer_form.is_valid():
+            print('is_valid')
+            question_form.save(answers=answer_form)
+    else:
+        answer_form = AnswerForm(field_count=answer_count)
+        print("answer_count in AAV:", answer_count)
+    context = {
+        #'answer_count' : answer_count,
+        'form' : answer_form
+    }
+    return render(request, 'offerts/application_answers.html', context)
+
+'''
+@login_required
+def ApplicationAnswersView(request, answer_count=0, question_id=0):
+    set = []
+
+    if request.method == "POST":
+        question = CustomQuestion.objects.get(id=question_id)
+        form = ApplicationForm(instance=question)
+
         for answer in answer_count:
-            form.append(AnswerField(request.POST))
-        #if form.is_valid():
-            #form.save()
+            set.append(AnswerField(request.POST))
+        print('between forr')
+        for answer in answer_count:
+            if set[answer].is_valid():
+                print('is_valid')
+                form.save(set[answer])
+            else: all_valid = False
+
+        if all_valid:
+            print('all answers valid, exitting ApllicationAnswersView')
+            redirect(ApplicationFormCreateView())
     else:
         for answer in answer_count:
-            form.append(AnswerField())
+            set.append(AnswerField())
     context = {
         'answer_count' : answer_count,
-        'form' : form
+        'form' : set
     }
     # CustomQuestion.objects.filter(pk=some_value).update(answer_choices='some value')
     return render(request, 'offerts/application_answers.html', context)
+'''
 
 @login_required
 def ApplyView(request, **kwargs):
