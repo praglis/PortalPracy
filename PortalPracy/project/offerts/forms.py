@@ -13,11 +13,8 @@ class ApplicationForm(forms.ModelForm):
         }
 
     def is_valid(self, request=None):
-        if request == None:
-            self.fields['answer_count'] = 0 #form modification is needed to assure is_valid() fun works properly
-            return super().is_valid()
-        offert_id = request.session.get('new_offert_id')
-        self.instance.offert = Offert.objects.get(id=offert_id)
+        new_offert_id = request.session.get('new_offert_id')
+        self.instance.offert = Offert.objects.get(id=new_offert_id)
         request.session['new_question_id'] = self.instance.id
         return super().is_valid()
 
@@ -30,8 +27,6 @@ class ApplicationForm(forms.ModelForm):
                 print(f'type(self.instance.answer_choices): {type(self.instance.answer_choices)}')
                 print(f'type(answers.cleaned_data.get(Answer 1)): {type(answers.cleaned_data.get("Answer 1"))}')
                 self.instance.answer_choices += answers.cleaned_data.get('Answer %s' % i) + "|"
-            super().save(commit=False)
-            return None
         print(">>> there are't any answers")
         return super().save()
 '''
@@ -45,5 +40,5 @@ class AnswerForm(forms.Form):
         field_count = kwargs.pop('field_count')
         super(AnswerForm, self).__init__(*args, **kwargs)
         print("init AnswerForm")
-        for i in range(1,field_count+1):
+        for i in range(1, int(field_count) + 1):
             self.fields['Answer %s' % i] = forms.CharField(max_length=500)

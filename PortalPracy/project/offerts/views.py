@@ -3,6 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
+import json
+
 from .models import Offert, Application, CustomQuestion
 from .forms import ApplicationForm, AnswerForm
 
@@ -49,14 +51,18 @@ class OffertCreateView(LoginRequiredMixin, CreateView):
 @login_required
 def ApplicationFormCreateView(request):
     if request.method == "POST":
-        form = ApplicationForm(request.POST)
-        if form.is_valid(request=request):
-            if form.save().answer_type != 'T':
-                request.session['answer_count'] = form.cleaned_data.get('answer_count')
-                request.session['new_question_id'] = form.instance.id
-                print('answer_count in AFCV:', request.session['answer_count'])
-                print('new_question_id in AFCV:', request.session['new_question_id'])
-                return redirect('offerts:set_answers')
+        request.session['new_question'] = json.dumps(request.POST)
+        #form = ApplicationForm(request.POST)
+        if not request.POST.get('answer_type') == 'T':
+            ##request.session['new_question'] = json.dumps(form)
+            return redirect('offerts:set_answers')
+        #if form.is_valid(request=request):
+            #if form.save().answer_type != 'T':
+                #request.session['answer_count'] = form.cleaned_data.get('answer_count')
+                #request.session['new_question_id'] = form.instance.id
+                #print('answer_count in AFCV:', request.session['answer_count'])
+                #print('new_question_id in AFCV:', request.session['new_question_id'])
+                #return redirect('offerts:set_answers')
     else:
         form = ApplicationForm()
 
@@ -72,14 +78,18 @@ def ApplicationFormCreateView(request):
 
 @login_required
 def ApplicationAnswersView(request):
-    answer_count = request.session.get('answer_count')
-    question_id = request.session.get('new_question_id')
+    print("AAV00 json:", request.session['new_question'])
+    question = json.loads(request.session['new_question'])
+    #answer_count = request.session.get('answer_count')
+    answer_count = question.get('answer_count')
+    print("AAV01 answer_count:", answer_count)
     if request.method == "POST":
-        question = CustomQuestion.objects.get(id=question_id)
-        question_form = ApplicationForm(instance=question)
+        #question_id = request.session.get('new_question_id')
+        #question = CustomQuestion.objects.get(id=question_id)
+        question_form = ApplicationForm(question)
         answer_form = AnswerForm(request.POST, field_count=answer_count)
         print("prevalid")
-        if answer_form.is_valid():
+        if answer_form.is_valid() and question_form.is_valid(request=request):
             print('is_valid')
             question_form.save(answers=answer_form)
     else:
