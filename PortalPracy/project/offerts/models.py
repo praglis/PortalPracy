@@ -110,5 +110,10 @@ class CustomQuestion(models.Model):
     #choices for radio and checkbox lists, coma separated
     answer_choices =  models.TextField(null = True)
 
+    def get_answers(self):
+        all_answers = list(self.answer_choices.split("|"))
+        del all_answers[len(all_answers)-1]
+        return all_answers
+
     def __str__(self):
         return self.question

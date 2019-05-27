@@ -64,15 +64,10 @@ def ApplicationFormCreateView(request):
     offert_id = request.session.get('new_offert_id')
     offert = Offert.objects.get(id=offert_id)
     questions = CustomQuestion.objects.filter(offert=offert)
-    all_answers = {}
-    for i, question in enumerate(questions):
-        if question.answer_choices != None:
-            all_answers[i] = tuple(question.answer_choices.split("|"))
 
     context = {
         'form': form,
-        'questions': enumerate([questions,all_answers]),
-        #'all_answers' : 
+        'questions': questions
     }
     return render(request, 'offerts/create_application_form.html', context)
 

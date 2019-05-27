@@ -34,26 +34,26 @@
 
 <h4>Your Form:</h4> <br>
 <ol>
-  {% for i, custom_question in questions %}
-  <li><p>{{ custom_question.0.question }}</p></li>
+  {% for question in questions %}
+  <li><p>{{ question.question }}</p></li>
   {% if question.answer_type == 'T' %}
   <input type="text"/>
   <br><br>
   {% endif %}
 
   {% if question.answer_type == 'R' %}
-  <ul>
-    {% for answer in custom_question.1.i %}
-    <li>{{answer}}</li>
+    {% for answer in question.get_answers %}
+    <input type="radio" name="answer"/>
+    {{answer}}
     {% endfor %}
-  </ul>
   <br><br>
   {% endif %}
 
   {% if question.answer_type == 'C' %}
   <ul>
-    {% for answer in custom_question.1.i %}
-    <li>{{answer}}</li>
+    {% for answer in question.get_answers %}
+    <input type="checkbox" name="answer"/>
+    {{answer}}
     {% endfor %}
   </ul>
   <br><br>
