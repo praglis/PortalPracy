@@ -1,6 +1,7 @@
 from django import forms
+from django.contrib.auth.models import User
 
-from .models import CustomQuestion, Offert
+from .models import CustomQuestion, Offert, Application
 
 class ApplicationForm(forms.ModelForm):
     answer_count = forms.IntegerField(label='Number of answers:', initial=3);
@@ -31,3 +32,14 @@ class AnswerForm(forms.Form):
         super(AnswerForm, self).__init__(*args, **kwargs)
         for i in range(1, int(field_count) + 1):
             self.fields['Answer %s' % i] = forms.CharField(max_length=500)
+
+class ApplyForm(forms.ModelForm):
+
+    class Meta:
+        model = Application
+        fields = ['email','first_name','last_name','cv','portfolio_link','message']
+        labels = {
+            "email": "Contact email:",
+            "cv": "Your CV:",
+            'portfolio_link' : "Link to your portfolio:",
+        }

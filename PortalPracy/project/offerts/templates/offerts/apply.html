@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block head %}
 <title> Portal Pracy </title>
@@ -14,29 +15,40 @@
     <!-- position -->
     <div class="form-row">
       <div class="form-group col-md-8 col-lg-6">
-        <label for="email">Contact email:</label>
-        <input class="form-control" type="text" name="email" placeholder="{{user.email}}"> <br>
-        <label for="firstName">First name:</label>
-        <input class="form-control" type="text" name="firstName" placeholder="{{user.first_name}}"> <br>
-        <label for="lastName">Last name:</label>
-        <input class="form-control" type="text" name="lastName" placeholder="{{user.last_name}}"> <br>
-        <label for="cv">Your CV:</label>
-        <input type="file" class="form-control-file" id="cv" placeholder="...">
-
-        <hr/><br>
-        <h4>Tell us something more:</h4><br>
-        <label for="portfolioLink">Link to your portfolio:</label>
-        <input class="form-control" type="text" name="portfolioLink" > <br>
-        <label for="message">Message:</label>
-        <textarea class="form-control message-form" name="message" rows="5" cols="80"></textarea>
-
+        {{form|crispy}}
       </div>
 
     </div>
+    <h4>Additional questions from employer:</h4> <br>
+    <ol>
+      {% for question in questions %}
+      <li><p>{{ question.question }}</p></li>
+      {% if question.answer_type == 'T' %}
+      <input type="text"/>
+      <br><br>
+      {% endif %}
 
+      {% if question.answer_type == 'R' %}
+        {% for answer in question.get_answers %}
+        <input type="radio" name="answer"/>
+        {{answer}}
+        {% endfor %}
+      <br><br>
+      {% endif %}
 
+      {% if question.answer_type == 'C' %}
+      <ul>
+        {% for answer in question.get_answers %}
+        <input type="checkbox" name="answer"/>
+        {{answer}}
+        {% endfor %}
+      </ul>
+      <br><br>
+      {% endif %}
+      {% endfor %}
+    </ol>
     <br>
-    <button type="submit" class="btn btn-primary">Apply</button>
+    <button type="submit" class="btn btn-primary mb-5">Apply</button>
   </form>
 
 

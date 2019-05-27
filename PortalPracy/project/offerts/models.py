@@ -72,9 +72,8 @@ class Offert(models.Model):
 
     def __str__(self):
         return self.position + ', ' + self.agency.company.name
-# redirect link
+
     def get_absolute_url(self):
-        #return reverse('offerts:application_form', kwargs={'pk':self.pk})
         return reverse('offerts:application_form')
 
 class Application(models.Model):

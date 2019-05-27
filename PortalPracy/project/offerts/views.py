@@ -6,7 +6,8 @@ from django.shortcuts import render, redirect
 import json
 
 from .models import Offert, Application, CustomQuestion
-from .forms import ApplicationForm, AnswerForm
+from sign_in.models import Profile
+from .forms import ApplicationForm, AnswerForm, ApplyForm
 
 def home(request):
     offerts = Offert.objects.all().order_by('-publication_date')[:3]
@@ -90,7 +91,23 @@ def ApplicationAnswersView(request):
 
 @login_required
 def ApplyView(request, **kwargs):
-    return render(request, 'offerts/apply.html')
+    if request.method == "POST":
+        form = ApplyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('')
+    else:
+        profile = Profile.objects.get(user=request.user)
+        form = ApplyForm(instance=profile)
+    offert_id = kwargs['pk']
+    offert = Offert.objects.get(id=offert_id)
+    questions = CustomQuestion.objects.filter(offert=offert)
+    context = {
+        'form' : form,
+        'offert' : offert,
+        'questions' : questions
+    }
+    return render(request, 'offerts/apply.html', context)
 
 class ApplicationCreateView(LoginRequiredMixin, CreateView):
     model = Application
