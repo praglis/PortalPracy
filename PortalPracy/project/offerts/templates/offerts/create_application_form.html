@@ -34,22 +34,30 @@
 
 <h4>Your Form:</h4> <br>
 <ol>
-  {% for question in questions %}
-  <li><p>{{ question.question }}</p></li>
-    {% if question.answer_type == 'T' %}
-      <input type="text"/>
-      <br><br>
-    {% endif %}
+  {% for i, custom_question in questions %}
+  <li><p>{{ custom_question.0.question }}</p></li>
+  {% if question.answer_type == 'T' %}
+  <input type="text"/>
+  <br><br>
+  {% endif %}
 
-    {% if question.answer_type == 'R' %}
-      <!-- display radio button options for this question-->
-      <br><br>
-    {% endif %}
+  {% if question.answer_type == 'R' %}
+  <ul>
+    {% for answer in custom_question.1.i %}
+    <li>{{answer}}</li>
+    {% endfor %}
+  </ul>
+  <br><br>
+  {% endif %}
 
-    {% if question.answer_type == 'C' %}
-      <!-- display checkbox options for this question-->
-      <br><br>
-    {% endif %}
+  {% if question.answer_type == 'C' %}
+  <ul>
+    {% for answer in custom_question.1.i %}
+    <li>{{answer}}</li>
+    {% endfor %}
+  </ul>
+  <br><br>
+  {% endif %}
   {% endfor %}
 </ol>
 <button type="submit" class="btn btn-success">Create my form</button>
