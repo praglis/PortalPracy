@@ -11,8 +11,8 @@
 <main role="main" class="container">
 
   <h3>Apply for the job:</h3> <br>
-  <form method="GET">
-    <!-- position -->
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="form-row">
       <div class="form-group col-md-8 col-lg-6">
         {{form|crispy}}

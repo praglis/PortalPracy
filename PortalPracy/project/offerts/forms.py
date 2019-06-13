@@ -43,3 +43,8 @@ class ApplyForm(forms.ModelForm):
             "cv": "Your CV:",
             'portfolio_link' : "Link to your portfolio:",
         }
+
+    def is_valid(self, request, offert_id):
+        self.instance.applicant = request.user
+        self.instance.offert = Offert.objects.get(id=offert_id)
+        return super().is_valid()

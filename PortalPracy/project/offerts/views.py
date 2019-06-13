@@ -91,17 +91,27 @@ def ApplicationAnswersView(request):
 
 @login_required
 def ApplyView(request, **kwargs):
-    if request.method == "POST":
-        form = ApplyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('')
-    else:
-        profile = Profile.objects.get(user=request.user)
-        form = ApplyForm(instance=profile)
     offert_id = kwargs['pk']
     offert = Offert.objects.get(id=offert_id)
     questions = CustomQuestion.objects.filter(offert=offert)
+
+    if request.method == "POST":
+        print("request.method == POST:")
+        form = ApplyForm(request.POST, request.FILES)
+        print("form = ApplyForm(request.POST)")
+        if form.is_valid(request, offert_id):
+            print("form_valid")
+            form.save()
+            print("form.save()")
+            return redirect('home')
+
+        print("form.errors: " + str(form.errors))
+        print("cv: " + str(form.clean()))
+
+    else:
+        profile = Profile.objects.get(user=request.user)
+        form = ApplyForm(instance=profile)
+
     context = {
         'form' : form,
         'offert' : offert,
