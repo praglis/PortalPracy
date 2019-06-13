@@ -31,6 +31,7 @@ class AnswerForm(forms.Form):
     def __init__(self, *args, **kwargs):
         field_count = kwargs.pop('field_count')
         super(AnswerForm, self).__init__(*args, **kwargs)
+
         for i in range(1, int(field_count) + 1):
             self.fields['Answer %s' % i] = forms.CharField(max_length=500)
 
@@ -46,7 +47,7 @@ class ApplyForm(forms.ModelForm):
         }
 
     def is_valid(self, request, offert_id):
-        
+
         self.instance.applicant = request.user
         self.instance.offert = Offert.objects.get(id=offert_id)
         try:

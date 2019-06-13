@@ -3,7 +3,8 @@ from .views import (
     OffertUpdateView,
     OffertDeleteView,
     MyOffertsListView,
-    RepliesListView
+    RepliesView,
+    ReplyDetails
 )
 from . import views
 
@@ -12,5 +13,6 @@ urlpatterns = [
     path('delete/<int:pk>/', OffertDeleteView.as_view(), name='manager-delete'),
     path('user/<str:username>/', MyOffertsListView.as_view(), name='manager-my'),
     path('update/<int:pk>/', OffertUpdateView.as_view(), name='manager-update'),
-    path('replies/<int:pk>/', RepliesListView.as_view(), name='manager-replies'),
+    path('replies/<int:pk>/', RepliesView, name='manager-replies'),
+    path('replies/details/<int:pk>/', ReplyDetails, name='manager-reply-details'),
 ]

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+   {% block head %}
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <title>aaaaaaaa</title>
+   {% endblock %}
+
+  {% block body %}
+    <article class="media content-section">
+    <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
+        <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href='#'>{{ application.offert.agency.company.name }}</a>
+              <small class="text-muted">{{ application.offert.publication_date }}</small>
+            </div>
+            <h1><a class="article-title">Position: {{ application.offert.position}}</a></h1>
+            <hr>
+            <p class="article-content"><strong>Author:</strong> <br> {{ application.first_name }} {{ application.last_name }}</p>
+            <p class="article-content"><strong>Message:</strong> <br> {{ application.message }}</p>
+            <p class="article-content"><strong>Portfolio link:</strong> <br> {{ application.portfolio_link }}</p>
+            <p class="article-content"><strong>CV:</strong> <br> {{ application.cv }}</p>
+        <div>
+    </article>
+  {% endblock %}

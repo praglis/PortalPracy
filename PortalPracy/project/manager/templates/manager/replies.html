@@ -12,20 +12,19 @@
       <hr>
       <h2> Replies: </h2>
       {% if applications %}
-        {% for ap in applications %}
+        {% for application in applications %}
         <article class="media content-section">>
             <div class="media-body">
                 <div class="article-metadata">
-                  <a class="mr-2">Author: {{ ap.first_name }}</a>
-                  <a class="mr-2">{{ ap.last_name}}</a>
+                  <a class="mr-2">Author: {{ application.first_name }}</a>
+                  <a class="mr-2">{{ application.last_name}}</a>
                 </div>
-                <a class="mr-2">Position: {{ ap.offert.position}}</a> <br>
-                <a class="mr-2">Message: {{ ap.message}}</a>
+                <a class="mr-2">Position: {{ application.offert.position}}</a> <br>
+                <a class="mr-2">Message: {{ application.message}}</a>
                 <br>
-                <a href="#"><button type="button" class="btn btn-outline-primary">See details</button></a>
+                <a href="{% url 'manager:manager-reply-details' application.id %}"><button type="button" class="btn btn-outline-primary">See details</button></a>
             <div>
         </article>
-
         {% endfor %}
       {% else %}
         <h3>No replies.</h3>

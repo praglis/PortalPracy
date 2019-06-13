@@ -24,25 +24,29 @@
       {% for question in questions %}
       <li><p>{{ question.question }}</p></li>
       {% if question.answer_type == 'T' %}
-      <input type="text"/>
+      <input type="text" name="{{question.question}}"/>
       <br><br>
       {% endif %}
 
       {% if question.answer_type == 'R' %}
+      <div>
         {% for answer in question.get_answers %}
-        <input type="radio" name="answer"/>
+        <input type="radio" name="{{question.question}} {{answer}}"/>
         {{answer}}
         {% endfor %}
+      </div>
       <br><br>
       {% endif %}
 
       {% if question.answer_type == 'C' %}
+      <div>
       <ul>
         {% for answer in question.get_answers %}
-        <input type="checkbox" name="answer"/>
+        <input type="checkbox" name="{{question.question}} {{answer}}"/>
         {{answer}}
         {% endfor %}
       </ul>
+      </div>
       <br><br>
       {% endif %}
       {% endfor %}
