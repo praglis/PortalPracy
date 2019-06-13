@@ -98,7 +98,7 @@ def ApplyView(request, **kwargs):
     if request.method == "POST":
         form = ApplyForm(request.POST, request.FILES)
         if form.is_valid(request, offert_id):
-
+            form.save()
             for question in questions:
 
                 if question.answer_type == 'T':
@@ -116,12 +116,17 @@ def ApplyView(request, **kwargs):
                         if request.POST.get(question.question + " " + box) == 'on':
                             answer += box + "|"
 
+                apps = Application.objects.all().filter(offert=offert_id, applicant=request.user)
+                apps.order_by('id')
+                application = apps.last()
+
                 custom_answer = CustomAnswer.objects.create(
                     applicant =     request.user,
                     question =      question,
+                    application =   application,
                     answer_type =   question.answer_type,
                     answer =        answer)
-            form.save()
+
             return redirect('home')
 
         print("form.errors: " + str(form.errors))

@@ -87,7 +87,7 @@ class Application(models.Model):
     message = models.TextField(null=True)
 
     def __str__(self):
-        return self.first_name + self.last_name +", " + self.offert.position
+        return self.first_name + " " + self.last_name +", " + self.offert.position
 
     def get_absolute_url(self):
         return reverse('offerts:index')
@@ -120,6 +120,7 @@ class CustomQuestion(models.Model):
 class CustomAnswer(models.Model):
     question = models.ForeignKey(CustomQuestion, on_delete=models.CASCADE)
     applicant = models.ForeignKey(User, on_delete=models.CASCADE)
+    application = models.ForeignKey(Application, on_delete=models.CASCADE)
     answer_types = (
         ('T', 'text'),
         ('R', 'single-choice'),

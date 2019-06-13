@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 
 from django.contrib.auth.models import User
-from offerts.models import Offert, Application
+from offerts.models import Offert, Application, CustomAnswer
 
 class MyOffertsListView(ListView):
      model = Offert
@@ -24,10 +24,11 @@ def RepliesView(request, **kwargs):
     return render(request,'manager/replies.html',context)
 
 def ReplyDetails(request, **kwargs):
-    application = Application.objects.all().filter(id=kwargs['pk'])
-    print("application: " + str(application))
+    application = Application.objects.all().get(id=kwargs['pk'])
+    custom_answers =  CustomAnswer.objects.all().filter(application=application)
     context = {
-    'application' : application
+    'application' : application,
+    'custom_answers' : custom_answers
     }
     return render(request,'manager/reply_details.html',context)
 
