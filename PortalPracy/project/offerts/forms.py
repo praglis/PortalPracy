@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.utils.datastructures import MultiValueDictKeyError
 
 from .models import CustomQuestion, Offert, Application
 
@@ -45,6 +46,12 @@ class ApplyForm(forms.ModelForm):
         }
 
     def is_valid(self, request, offert_id):
+        
         self.instance.applicant = request.user
         self.instance.offert = Offert.objects.get(id=offert_id)
+        try:
+            if request.FILES['InMemoryUploadedFile'] == None:
+                pass
+        except MultiValueDictKeyError:
+            self.instance.cv = request.user.profile.cv
         return super().is_valid()

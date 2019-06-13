@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 
 import json
 
-from .models import Offert, Application, CustomQuestion
+from .models import Offert, Application, CustomQuestion, CustomAnswer
 from sign_in.models import Profile
 from .forms import ApplicationForm, AnswerForm, ApplyForm
 
@@ -96,13 +96,11 @@ def ApplyView(request, **kwargs):
     questions = CustomQuestion.objects.filter(offert=offert)
 
     if request.method == "POST":
-        print("request.method == POST:")
         form = ApplyForm(request.POST, request.FILES)
-        print("form = ApplyForm(request.POST)")
         if form.is_valid(request, offert_id):
-            print("form_valid")
+            for question in questions:
+                custom_answer = CustomAnswer.objects.create(applicant=request.user, question=question, answer_type=question.answer_type)
             form.save()
-            print("form.save()")
             return redirect('home')
 
         print("form.errors: " + str(form.errors))
@@ -110,7 +108,7 @@ def ApplyView(request, **kwargs):
 
     else:
         profile = Profile.objects.get(user=request.user)
-        form = ApplyForm(instance=profile)
+        form = ApplyForm()
 
     context = {
         'form' : form,

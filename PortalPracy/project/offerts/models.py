@@ -116,3 +116,19 @@ class CustomQuestion(models.Model):
 
     def __str__(self):
         return self.question
+
+class CustomAnswer(models.Model):
+    question = models.ForeignKey(CustomQuestion, on_delete=models.CASCADE)
+    applicant = models.ForeignKey(User, on_delete=models.CASCADE)
+    answer_types = (
+        ('T', 'text'),
+        ('R', 'single-choice'),
+        ('C', 'multiple-choice'),
+    )
+    answer_type = models.CharField(
+        max_length=1,
+        choices=answer_types,
+        default='T',
+        null = True
+    )
+    answer = models.TextField(null = True)
