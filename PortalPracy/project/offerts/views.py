@@ -99,7 +99,13 @@ def ApplyView(request, **kwargs):
         form = ApplyForm(request.POST, request.FILES)
         if form.is_valid(request, offert_id):
             for question in questions:
-                custom_answer = CustomAnswer.objects.create(applicant=request.user, question=question, answer_type=question.answer_type)
+                if question.answer_type == 'T':
+                    answer = 'lalala'
+                custom_answer = CustomAnswer.objects.create(
+                    applicant =     request.user,
+                    question =      question,
+                    answer_type =   question.answer_type,
+                    answer =        answer)
             form.save()
             return redirect('home')
 

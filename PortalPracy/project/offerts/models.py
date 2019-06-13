@@ -132,3 +132,6 @@ class CustomAnswer(models.Model):
         null = True
     )
     answer = models.TextField(null = True)
+
+    def __str__(self):
+        return self.question.question
