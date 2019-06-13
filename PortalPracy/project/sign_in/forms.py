@@ -8,8 +8,8 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField() #default: required=True
 
     class Meta:
-        model = User # model that is going to be affected when form.save() is done
-        fields = ['username', 'email', 'password1', 'password2'] # fields that we want in the form and in that order
+        model = User
+        fields = ['first_name','last_name','username', 'email', 'password1', 'password2']
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
