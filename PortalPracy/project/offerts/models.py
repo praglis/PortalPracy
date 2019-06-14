@@ -134,5 +134,10 @@ class CustomAnswer(models.Model):
     )
     answer = models.TextField(null = True)
 
+    def get_answers(self):
+        all_answers = list(self.answer.split("|"))
+        del all_answers[len(all_answers)-1]
+        return all_answers
+
     def __str__(self):
         return self.question.question
