@@ -5,18 +5,14 @@ from .models import Profile
 
 # form that inherits from UserCreationForm
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField() #default: required=True
-
     class Meta:
         model = User
         fields = ['first_name','last_name','username', 'email', 'password1', 'password2']
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
-
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username','first_name','last_name', 'email']
 
 class AccountTypeForm(forms.Form):
     user_groups = (

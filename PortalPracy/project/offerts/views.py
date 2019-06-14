@@ -41,6 +41,7 @@ class OffertCreateView(LoginRequiredMixin, CreateView):
     ]
 
     template_name = "offerts/add_offert.html"
+    success_url = 'offerts:application_form'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
