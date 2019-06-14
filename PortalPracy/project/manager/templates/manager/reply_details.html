@@ -8,7 +8,7 @@
 
   {% block body %}
     <article class="media content-section">
-    <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
+    <img class="article-img" src="{{application.offert.agency.company.logo.url}}" alt="logo">
         <div class="media-body">
             <div class="article-metadata">
               <a class="mr-2" href='#'>{{ application.offert.agency.company.name }}</a>
@@ -18,8 +18,8 @@
             <hr>
             <p class="article-content"><strong>Author:</strong> <br> {{ application.first_name }} {{ application.last_name }}</p>
             <p class="article-content"><strong>Message:</strong> <br> {{ application.message }}</p>
-            <p class="article-content"><strong>Portfolio link:</strong> <br> {{ application.portfolio_link }}</p>
-            <p class="article-content"><strong>CV:</strong> <br> {{ application.cv }}</p>
+            <p class="article-content"><strong>Portfolio link:</strong> <br> <a href="{{ application.portfolio_link }}">{{ application.portfolio_link }}</a></p>
+            <p class="article-content" ><strong>CV:</strong><a href="/media/{{application.cv}}"><br>{{application.cv }}</a></p> 
         <div>
         <hr>
          <h3>Your questions answered:</h3> <br>
