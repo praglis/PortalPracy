@@ -2,6 +2,7 @@ from django.views.generic import ListView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, redirect
+from django.urls import reverse, reverse_lazy, resolve
 
 #from django.contrib.auth.models import User
 from offerts.models import Offert, Application, CustomAnswer
@@ -41,15 +42,10 @@ def OffertUpdateView(request, **kwargs):
     if request.method == 'POST':
         form = OffertUpdateForm(request.POST, instance=my_offert)
 
-        print("is valid?")
         if form.is_valid(request):
-            print("valid")
             form.save()
-            print("saved")
-            redirect('/manage/user/<str:username>/')
-            print("not redirected :(")
-        else:
-            print("Not valid")
+            return redirect('/manage/user/<request.user>/')
+
     else:
         form = OffertUpdateForm(instance=my_offert)
 
