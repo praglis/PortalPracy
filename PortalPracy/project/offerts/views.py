@@ -109,7 +109,6 @@ def ApplyView(request, **kwargs):
                     for rad in question.get_answers():
                         if request.POST.get(question.question + " " + rad) == 'on':
                             answer += rad
-
                 else:
                     answer = ""
                     for box in question.get_answers():

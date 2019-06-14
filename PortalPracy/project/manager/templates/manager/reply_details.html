@@ -23,13 +23,15 @@
         <div>
         <hr>
          <h3>Your questions answered:</h3> <br>
-         <ul>
+         <ol>
            {% for answer in custom_answers %}
-             <li><p><strong>Q: </strong>{{answer.question.question}}</p></li>
-             <strong>A: </strong> {{ answer.get_answers }}
+             <li><p><strong> {{answer.question.question}} </strong></p></li>
+             <ul>
+               {% for an in answer.get_answers %}<li>{{an}}</li>  {% endfor %}
+             </ul>
              <br><br>
            {% endfor %}
-         </ul>
+         </ol>
         </div>
     </article>
   {% endblock %}
