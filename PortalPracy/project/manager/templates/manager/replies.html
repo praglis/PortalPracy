@@ -10,18 +10,16 @@
       <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
       <link rel="Stylesheet" type="text/css" href="{% static 'offerts/index.css' %}">
       <hr>
-      <h2> Replies: </h2>
       {% if applications %}
         {% for application in applications %}
-        <article class="media content-section">>
+        <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                  <a class="mr-2">Author: {{ application.first_name }}</a>
-                  <a class="mr-2">{{ application.last_name}}</a>
+                  <a class="mr-2"> <strong>Author: </strong>{{ application.first_name }} {{ application.last_name}}</a>
                 </div>
-                <a class="mr-2">Position: {{ application.offert.position}}</a> <br>
-                <a class="mr-2">Message: {{ application.message}}</a>
-                <br>
+                <hr>
+                <a class="mr-2"><strong> Message: </strong> {{ application.message}}</a>
+                <br> <br>
                 <a href="{% url 'manager:manager-reply-details' application.id %}"><button type="button" class="btn btn-outline-primary">See details</button></a>
             <div>
         </article>
