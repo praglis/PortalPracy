@@ -136,7 +136,8 @@ class CustomAnswer(models.Model):
 
     def get_answers(self):
         all_answers = list(self.answer.split("|"))
-        del all_answers[len(all_answers)-1]
+        if self.answer_type != 'T':
+            del all_answers[len(all_answers)-1]
         return all_answers
 
     def __str__(self):

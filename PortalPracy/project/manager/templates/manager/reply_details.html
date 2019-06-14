@@ -26,7 +26,7 @@
          <ul>
            {% for answer in custom_answers %}
              <li><p><strong>Q: </strong>{{answer.question.question}}</p></li>
-             <strong>A: </strong>{{answer.get_answers}}
+             <strong>A: </strong> {{ answer.get_answers }}
              <br><br>
            {% endfor %}
          </ul>
