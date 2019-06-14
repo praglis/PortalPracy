@@ -21,10 +21,15 @@
             <p class="article-content"><strong>Portfolio link:</strong> <br> {{ application.portfolio_link }}</p>
             <p class="article-content"><strong>CV:</strong> <br> {{ application.cv }}</p>
         <div>
-          {{custom_answers}}
-          {% for answer in custom_answers %}
-            {{answer}}
-          {% endfor %}
+        <hr>
+         <h3>Your questions answered:</h3> <br>
+         <ul>
+           {% for answer in custom_answers %}
+             <li><p><strong>Q: </strong>{{answer.question.question}}</p></li>
+             <strong>A: </strong>{{answer.get_answers}}
+             <br><br>
+           {% endfor %}
+         </ul>
         </div>
     </article>
   {% endblock %}
