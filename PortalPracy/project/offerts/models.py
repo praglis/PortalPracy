@@ -73,8 +73,8 @@ class Offert(models.Model):
     def __str__(self):
         return self.position + ', ' + self.agency.company.name
 
-    def get_absolute_url(self):
-        return reverse('offerts:application_form')
+    '''def get_absolute_url(self):
+        return reverse('offerts:application_form')'''
 
 class Application(models.Model):
     offert = models.ForeignKey(Offert, on_delete=models.CASCADE)

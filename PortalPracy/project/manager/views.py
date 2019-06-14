@@ -1,9 +1,11 @@
-from django.views.generic import ListView, UpdateView, DeleteView
+from django.views.generic import ListView, DeleteView
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from offerts.models import Offert, Application, CustomAnswer
+from .forms import OffertUpdateForm
 
 class MyOffertsListView(ListView):
      model = Offert
@@ -32,21 +34,27 @@ def ReplyDetails(request, **kwargs):
     }
     return render(request,'manager/reply_details.html',context)
 
+@login_required
+def OffertUpdateView(request, **kwargs):
+    my_offert = Offert.objects.get(id=kwargs['pk'])
 
-class OffertUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-     model = Offert
-     fields = ['position', 'agency', 'min_salary', 'max_salary', 'must_have', 'nice_to_have', 'duties', 'benefits']
-     template_name = "manager/offert_update.html"
+    if request.method == 'POST':
+        form = OffertUpdateForm(request.POST, instance=my_offert)
 
-     def form_valid(self, form):
-         form.instance.author = self.request.user
-         return super().form_valid(form)
+        print("is valid?")
+        if form.is_valid(request):
+            print("valid")
+            form.save()
+            print("saved")
+            redirect('/manage/user/<str:username>/')
+            print("not redirected :(")
+        else:
+            print("Not valid")
+    else:
+        form = OffertUpdateForm(instance=my_offert)
 
-     def test_func(self):
-         offert = self.get_object()
-         if self.request.user == offert.author:
-             return True
-         return False
+    context = { 'form' : form }
+    return render(request, "manager/offert_update.html", context)
 
 
 class OffertDeleteView(LoginRequiredMixin,UserPassesTestMixin, DeleteView):
