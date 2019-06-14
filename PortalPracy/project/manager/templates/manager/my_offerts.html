@@ -20,9 +20,12 @@
     </div>
     <h2><a class="article-title">{{ offert.position }}</a></h2>
     <br>
-    <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
-    <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-outline-primary">Update</button></a>
-    <a href="{% url 'manager:manager-replies' offert.id %}"><button type="button" class="btn btn-outline-warning">See replies</button></a>
+    <a href="{% url 'offerts:offert_details' offert.id %}"><button type="button" class="btn btn-info mb-2 mr-1">Details</button></a>
+    <a href="{% url 'manager:manager-replies' offert.id %}"><button type="button" class="btn btn-warning mb-2">Replies</button></a>
+    <br>
+    <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-primary btn-sm mr-1">Update</button></a>
+    <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+
   </div>
 </article>
 

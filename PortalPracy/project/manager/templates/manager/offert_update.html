@@ -3,19 +3,20 @@
 {% load static %}
 
 {% block head %}
-  <title> Portal Pracy </title>
+<title> Portal Pracy </title>
 {% endblock %}
 
 {% block body %}
-  <div class="content-section col-md-8">
-    <form method="POST" novalidate>
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Update this job offert</legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class="form-group">
-          <button class="btn btn-outline-info" type="submit">Update</button>
-        </div>
-    </form>
-{% endblock %}
+<div class="content-section col-md-8">
+  <form method="POST" novalidate>
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Update this job offert</legend>
+      {{ form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-outline-info" type="submit">Update</button>
+      <a class="btn btn-outline-secondary" href="{% url 'manager:manager-my' user.username %}">Cancel</a>
+    </div>
+  </form>
+  {% endblock %}
