@@ -1,37 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
 
-   {% block head %}
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-    <title>{{ offert.position }} - details</title>
-   {% endblock %}
+{% block head %}
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+<title>{{ offert.position }} - details</title>
+{% endblock %}
 
-  {% block body %}
+{% block body %}
 
-    <article class="media content-section">
-    <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
-        <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
-              <small class="text-muted">{{offert.publication_date}}</small>
-            </div>
-            <h1><a class="article-title">{{ offert.position }}</a></h1>
-            <hr>
-            <p class="article-content"><strong>Location:</strong> <br> {{ offert.agency.country }}, {{offert.agency.location }}</p>
-            <p class="article-content"><strong>About:</strong> <br> {{offert.about}}</p>
-            <strong>Must have:</strong>
-            <ul>
-              {% for tag in offert.must_have.all %}
-                <li>{{tag}}</li>
-              {% endfor %}
-            </ul>
-            <p class="article-content"><br><strong>Nice to have:</strong> <br> {{offert.nice_to_have}}</p>
-            <p class="article-content"><strong>Duties:</strong> <br> {{offert.duties}}</p>
-            <p class="article-content"><strong>Remote:</strong> <br> {{offert.remote}}</p>
-            <p class="article-content"><strong>Salary:</strong> <br> {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</p>
-            <p class="article-content"><strong>Benefits:</strong> <br> {{offert.benefits}}</p>
-            <a href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-outline-primary">APPLY</button></a>
-
-        <div>
+<article class="media content-section">
+  <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
+      <small class="text-muted">{{offert.publication_date}}</small>
+    </div>
+    <h1><a class="article-title">{{ offert.position }}</a></h1>
+    <hr>
+    <p class="article-content"><strong>Location:</strong> <br> {{ offert.agency.country }}, {{offert.agency.location }}</p>
+    <p class="article-content"><strong>About:</strong> <br> {{offert.about}}</p>
+    <strong>Must have:</strong>
+    <ul>
+      {% for tag in offert.must_have.all %}
+      <li>{{tag}}</li>
+      {% endfor %}
+    </ul>
+    <p class="article-content"><br><strong>Nice to have:</strong> <br> {{offert.nice_to_have}}</p>
+    <p class="article-content"><strong>Duties:</strong> <br> {{offert.duties}}</p>
+    <p class="article-content"><strong>Remote:</strong> <br> {{offert.remote}}</p>
+    <p class="article-content"><strong>Salary:</strong> <br> {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</p>
+    <p class="article-content"><strong>Benefits:</strong> <br> {{offert.benefits}}</p>
+    {% if user == offert.author %}
+    <a class="btn btn-outline-secondary" href="{% url 'manager:manager-my' user.username %}">My offerts</a>
+    {% else %}
+    <a href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-success btn-lg">Apply</button></a>
+    {% endif %}
+    <div>
     </article>
-  {% endblock %}
+    {% endblock %}
