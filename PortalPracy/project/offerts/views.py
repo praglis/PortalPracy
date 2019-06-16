@@ -22,7 +22,11 @@ class OffertListView(ListView):
 
 def OffertDetailView(request, **kwargs):
     offert = Offert.objects.all().get(id=kwargs['pk'])
-    context = { 'offert' : offert }
+    questions = CustomQuestion.objects.all().filter(offert=offert)
+    context = {
+        'offert' : offert,
+        'questions' : questions
+    }
     return render(request, 'offerts/offert_details.html', context)
 
 

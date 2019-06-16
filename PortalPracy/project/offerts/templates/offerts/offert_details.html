@@ -35,11 +35,11 @@
     <hr>
      <h3>Your custom questions:</h3> <br>
      <ol>
-       {% for question in custom_questions %}
+       {% for question in questions %}
          <li><p><strong> {{question.question}} </strong></p></li>
-         <br><br>
        {% endfor %}
      </ol>
+     <br>
     </div>
     <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-primary mb-2 mr-1">Update offert</button></a>
     <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-danger mb-2">Delete offert</button></a>
