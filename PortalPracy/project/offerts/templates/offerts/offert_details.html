@@ -34,6 +34,7 @@
     <div>
       <hr>
       <h3>Your custom questions:</h3> <br>
+      {% if questions %}
       <ol>
         {% for question in questions %}
         <li><p>{{ question.question }}</p></li>
@@ -63,6 +64,10 @@
 
         {% endfor %}
       </ol>
+      {% else %}
+      <h6><strong>You didn't create any questions.</strong></h6>
+      <br><br>
+      {% endif %}
     </div>
     <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-primary mb-2 mr-1">Update offert</button></a>
     <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-danger mb-2">Delete offert</button></a>
