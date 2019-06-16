@@ -19,7 +19,7 @@ class MyOffertsListView(ListView):
 
 def RepliesView(request, **kwargs):
 
-    applications = Application.objects.all().filter(offert_id=kwargs['pk'])
+    applications = Application.objects.all().filter(offert_id=kwargs['pk']).order_by('-pk')
 
     context = {
     'applications' : applications
