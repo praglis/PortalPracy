@@ -4,6 +4,29 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from .models import CustomQuestion, Offert, Application
 
+class OffertCreateForm(forms.ModelForm):
+    class Meta:
+        model = Offert
+        fields = [
+            'position',
+            'agency',
+            'remote',
+            'salary_type',
+            'min_salary',
+            'max_salary',
+            'must_have',
+            'nice_to_have',
+            'duties',
+            'benefits',
+            'about'
+        ]
+
+    def save(self, request):
+        self.instance.author = request.user
+        saved_data = super().save()
+        request.session['new_offert_id'] = self.instance.id
+        return saved_data
+
 class ApplicationForm(forms.ModelForm):
     answer_count = forms.IntegerField(label='Number of answers:', initial=3);
     class Meta:

@@ -7,7 +7,7 @@ import json
 
 from .models import Offert, Application, CustomQuestion, CustomAnswer
 from sign_in.models import Profile
-from .forms import ApplicationForm, AnswerForm, ApplyForm
+from .forms import ApplicationForm, AnswerForm, ApplyForm, OffertCreateForm
 
 def home(request):
     offerts = Offert.objects.all().order_by('-publication_date')[:3]
@@ -25,29 +25,20 @@ class OffertDetailView(DetailView):
     template_name = 'offerts/offert_details.html'
     context_object_name = 'offert'
 
-class OffertCreateView(LoginRequiredMixin, CreateView):
-    model = Offert
-    fields = [  'position',
-                'agency',
-                'remote',
-                'salary_type',
-                'min_salary',
-                'max_salary',
-                'must_have',
-                'nice_to_have',
-                'duties',
-                'benefits',
-                'about'
-    ]
+def OffertCreateView(request):
+    if request.method == "POST":
+        form = OffertCreateForm(request.POST)
+        if form.is_valid():
+            form.save(request)
+            print("saved =]")
+            return redirect('offerts:application_form')
+            print("not redirected =[")
 
-    template_name = "offerts/add_offert.html"
-    success_url = 'offerts:application_form'
+    else:
+        form = OffertCreateForm()
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        saved_data = super().form_valid(form)
-        self.request.session['new_offert_id'] = form.instance.id
-        return saved_data
+    context = { 'form' : form }
+    return render(request, "offerts/add_offert.html", context)
 
 
 @login_required

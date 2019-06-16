@@ -35,7 +35,7 @@
     <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-danger mb-2">Delete offert</button></a>
     <br>
     <a class="btn btn-secondary btn-sm mr-1" href="{% url 'manager:manager-my' user.username %}">My offerts list</a>
-    <a href="{% url 'manager:manager-replies' offert.id %}"><button type="button" class="btn btn-warning btn-sm">View applications</button></a>
+    <a href="{% url 'manager:manager-replies' offert.id %}"><button type="button" class="btn btn-info btn-sm">View applications</button></a>
     {% else %}
     <a href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-success btn-lg">Apply</button></a>
     {% endif %}
