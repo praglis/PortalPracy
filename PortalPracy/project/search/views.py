@@ -42,8 +42,6 @@ def index(request):
 
     if per_hour == 'on':
         qs = qs.filter(salary_type = 'H')
-    else:
-        qs = qs.filter(salary_type = 'M')
 
     context = {
         'queryset' : qs,
