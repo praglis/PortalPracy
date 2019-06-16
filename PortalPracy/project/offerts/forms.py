@@ -69,6 +69,10 @@ class ApplyForm(forms.ModelForm):
             'portfolio_link' : "Link to your portfolio:",
         }
 
+    def __init__(self, *args, **kwargs):
+        super(ApplyForm, self).__init__(*args, **kwargs)
+        self.fields['portfolio_link'].required = False
+
     def is_valid(self, request, offert_id):
 
         self.instance.applicant = request.user
