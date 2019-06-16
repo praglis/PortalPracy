@@ -14,8 +14,8 @@
       <h2>Are you sure you want to delete {{object.position}} job offert?</h2>
     </fieldset>
     <div class="form-group">
-      <button class="btn btn-outline-danger" type="submit">Yes, delete</button>
-      <a class="btn btn-outline-secondary" href="{% url 'manager:manager-my' user.username %}">Cancel</a>
+      <button class="btn btn-danger mr-1" type="submit">Yes, delete</button>
+      <a class="btn btn-secondary" href="{% url 'manager:manager-my' user.username %}">Cancel</a>
     </div>
   </form>
   {% endblock %}

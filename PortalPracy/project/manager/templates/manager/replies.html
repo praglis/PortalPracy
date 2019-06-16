@@ -20,7 +20,7 @@
                 <hr>
                 <a class="mr-2"><strong> Message: </strong> {{ application.message}}</a>
                 <br> <br>
-                <a href="{% url 'manager:manager-reply-details' application.id %}"><button type="button" class="btn btn-outline-primary">See details</button></a>
+                <a href="{% url 'manager:manager-reply-details' application.id %}"><button type="button" class="btn btn-info">View full application</button></a>
             <div>
         </article>
         {% endfor %}

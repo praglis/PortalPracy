@@ -7,12 +7,15 @@ class OffertUpdateForm(forms.ModelForm):
          fields = [
             'position',
             'agency',
+            'remote',
+            'salary_type',
             'min_salary',
             'max_salary',
             'must_have',
             'nice_to_have',
             'duties',
-            'benefits'
+            'benefits',
+            'about'
         ]
 
      def is_valid(self, request):

@@ -28,10 +28,14 @@
     <p class="article-content"><br><strong>Nice to have:</strong> <br> {{offert.nice_to_have}}</p>
     <p class="article-content"><strong>Duties:</strong> <br> {{offert.duties}}</p>
     <p class="article-content"><strong>Remote:</strong> <br> {{offert.remote}}</p>
-    <p class="article-content"><strong>Salary:</strong> <br> {{offert.min_salary}}-{{offert.max_salary}} zl  {{ offert.get_salary_type_display }}</p>
+    <p class="article-content"><strong>Salary:</strong> <br> {{offert.min_salary}}-{{offert.max_salary}} zł  {{ offert.get_salary_type_display }}</p>
     <p class="article-content"><strong>Benefits:</strong> <br> {{offert.benefits}}</p>
     {% if user == offert.author %}
-    <a class="btn btn-outline-secondary" href="{% url 'manager:manager-my' user.username %}">My offerts</a>
+    <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-primary mb-2 mr-1">Update offert</button></a>
+    <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-danger mb-2">Delete offert</button></a>
+    <br>
+    <a class="btn btn-secondary btn-sm mr-1" href="{% url 'manager:manager-my' user.username %}">My offerts list</a>
+    <a href="{% url 'manager:manager-replies' offert.id %}"><button type="button" class="btn btn-warning btn-sm">View applications</button></a>
     {% else %}
     <a href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-success btn-lg">Apply</button></a>
     {% endif %}
