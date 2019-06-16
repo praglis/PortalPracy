@@ -32,6 +32,7 @@
     <p class="article-content"><strong>Benefits:</strong> <br> {{offert.benefits}}</p>
     {% if user == offert.author %}
     <div>
+      <br>
       <hr>
       <h3>Your custom questions:</h3> <br>
       {% if questions %}
@@ -64,19 +65,21 @@
 
         {% endfor %}
       </ol>
-      {% else %}
-      <h6><strong>You didn't create any questions.</strong></h6>
-      <br><br>
-      {% endif %}
-    </div>
-    <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-primary mb-2 mr-1">Update offert</button></a>
-    <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-danger mb-2">Delete offert</button></a>
-    <br>
-    <a class="btn btn-secondary btn-sm mr-1" href="{% url 'manager:manager-my' user.username %}">My offerts list</a>
-    <a href="{% url 'manager:manager-replies' offert.id %}"><button type="button" class="btn btn-info btn-sm">View applications</button></a>
     {% else %}
-    <a href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-success btn-lg">Apply</button></a>
+      <h6><strong>You didn't create any questions.</strong></h6>
+      <br>
     {% endif %}
+    </div>
+
+    <a class="btn btn-secondary mb-2" href="{% url 'manager:manager-my' user.username %}">My offerts list</a>
+    <a href="{% url 'manager:manager-replies' offert.id %}"><button type="button" class="btn btn-info mb-2">View applications</button></a>
+    <br><br> <hr> <h3>Manage your offert:</h3> <br>
+    <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-primary mb-2" >Update offert</button></a>
+    <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-danger mb-2" >Delete offert</button></a>
+  {% else %}
+    <a href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-success btn-lg">Apply</button></a>
+  {% endif %}
     <div>
+
     </article>
     {% endblock %}
