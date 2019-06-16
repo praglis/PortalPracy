@@ -31,6 +31,16 @@
     <p class="article-content"><strong>Salary:</strong> <br> {{offert.min_salary}}-{{offert.max_salary}} zł  {{ offert.get_salary_type_display }}</p>
     <p class="article-content"><strong>Benefits:</strong> <br> {{offert.benefits}}</p>
     {% if user == offert.author %}
+    <div>
+    <hr>
+     <h3>Your custom questions:</h3> <br>
+     <ol>
+       {% for question in custom_questions %}
+         <li><p><strong> {{question.question}} </strong></p></li>
+         <br><br>
+       {% endfor %}
+     </ol>
+    </div>
     <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-primary mb-2 mr-1">Update offert</button></a>
     <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-danger mb-2">Delete offert</button></a>
     <br>

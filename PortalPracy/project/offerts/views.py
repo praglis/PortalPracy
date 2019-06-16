@@ -20,19 +20,18 @@ class OffertListView(ListView):
     ordering = ['-publication_date'] # '-' -> from newest to oldest
     paginate_by = 6
 
-class OffertDetailView(DetailView):
-    model = Offert
-    template_name = 'offerts/offert_details.html'
-    context_object_name = 'offert'
+def OffertDetailView(request, **kwargs):
+    offert = Offert.objects.all().get(id=kwargs['pk'])
+    context = { 'offert' : offert }
+    return render(request, 'offerts/offert_details.html', context)
+
 
 def OffertCreateView(request):
     if request.method == "POST":
         form = OffertCreateForm(request.POST)
         if form.is_valid():
             form.save(request)
-            print("saved =]")
             return redirect('offerts:application_form')
-            print("not redirected =[")
 
     else:
         form = OffertCreateForm()
@@ -119,9 +118,6 @@ def ApplyView(request, **kwargs):
                     answer =        answer)
 
             return redirect('home')
-
-        print("form.errors: " + str(form.errors))
-        print("cv: " + str(form.clean()))
 
     else:
         profile = Profile.objects.get(user=request.user)
