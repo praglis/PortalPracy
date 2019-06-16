@@ -33,21 +33,21 @@
         {% for answer in question.get_answers %}
         <input type="radio" name="{{question.question}}" id="{{question.question}} {{answer}}"/>
         {{answer}}
+        <br>
         {% endfor %}
       </div>
-      <br><br>
+      <br>
       {% endif %}
 
       {% if question.answer_type == 'C' %}
       <div>
-      <ul>
         {% for answer in question.get_answers %}
         <input type="checkbox" name="{{question.question}} {{answer}}"/>
         {{answer}}
+        <br>
         {% endfor %}
-      </ul>
       </div>
-      <br><br>
+      <br>
       {% endif %}
       {% endfor %}
     </ol>
