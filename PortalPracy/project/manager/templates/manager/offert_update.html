@@ -15,8 +15,8 @@
       {{ form|crispy }}
     </fieldset>
     <div class="form-group">
-      <button class="btn btn-outline-info" type="submit">Update</button>
-      <a class="btn btn-outline-secondary" href="{% url 'manager:manager-my' user.username %}">Cancel</a>
+      <button class="btn btn-success" type="submit">Update</button>
+      <a class="btn btn-secondary ml-1" href="{% url 'manager:manager-my' user.username %}">Cancel</a>
     </div>
   </form>
   {% endblock %}
