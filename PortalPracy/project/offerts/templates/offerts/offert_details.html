@@ -32,14 +32,37 @@
     <p class="article-content"><strong>Benefits:</strong> <br> {{offert.benefits}}</p>
     {% if user == offert.author %}
     <div>
-    <hr>
-     <h3>Your custom questions:</h3> <br>
-     <ol>
-       {% for question in questions %}
-         <li><p><strong> {{question.question}} </strong></p></li>
-       {% endfor %}
-     </ol>
-     <br>
+      <hr>
+      <h3>Your custom questions:</h3> <br>
+      <ol>
+        {% for question in questions %}
+        <li><p>{{ question.question }}</p></li>
+
+        {% if question.answer_type == 'T' %}
+        <input type="text"/>
+        <br><br>
+        {% endif %}
+
+        {% if question.answer_type == 'R' %}
+        {% for answer in question.get_answers %}
+        <input type="radio" name="answer"/>
+        {{answer}}
+        <br>
+        {% endfor %}
+        <br><br>
+        {% endif %}
+
+        {% if question.answer_type == 'C' %}
+        {% for answer in question.get_answers %}
+        <input type="checkbox" name="answer"/>
+        {{answer}}
+        <br>
+        {% endfor %}
+        <br><br>
+        {% endif %}
+
+        {% endfor %}
+      </ol>
     </div>
     <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-primary mb-2 mr-1">Update offert</button></a>
     <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-danger mb-2">Delete offert</button></a>
