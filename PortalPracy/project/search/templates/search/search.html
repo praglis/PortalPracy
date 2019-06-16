@@ -50,7 +50,7 @@
           </div>
 
           <div class="form-group col-md-4">
-            <label for="tags">Technologies</label>
+            <label for="tags">Tag (must have)</label>
             <select id="tags" class="form-control" name=tags>
               <option selected>Choose...</option>
               {% for tag in tag_set %}
@@ -97,13 +97,11 @@
         <strong>Must have:</strong>
         <ul>
           {% for tag in offert.must_have.all %}
-            <li>{{tag}}</li>
+          <li>{{tag}}</li>
           {% endfor %}
         </ul><br>
 
         <p class="article-content"><strong>Remote:</strong> <br> {{offert.remote}}</p>
-
-
 
         <a href="{% url 'offerts:offert_details' offert.id %}"><button type="button" class="btn btn-outline-primary">Find out more</button></a>
         <a  href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-outline-success">APPLY</button></a>
@@ -116,7 +114,4 @@
         {% endif %}
       </div>
     </div>
-
-
-
     {% endblock %}
