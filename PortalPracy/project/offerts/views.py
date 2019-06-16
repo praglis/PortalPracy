@@ -104,13 +104,7 @@ def ApplyView(request, **kwargs):
                     print("typ: RRRRRRRRRRR")
                     answer = ""
                     for rad in question.get_answers():
-                        print("rad = " + rad)
-                        print("question.question: " + str(question.question))
-                        print("question.question + rad): " + question.question + " " + rad)
-                        print("request.POST.get(question.question + rad): " + str(request.POST.get(question.question + " " + rad)))
-                        if request.POST.get(question.question + " " + rad) == 'on':
-                            print("if request.POST.get(question.question + " " + rad) == 'on': " + str(request.POST.get(question.question + " " + rad)))
-                            print("answer: " + answer)
+                        if request.POST.get(question.question) == rad:
                             answer += rad
                 else:
                     print("typ: CCCCCCCCCC")

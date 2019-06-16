@@ -31,7 +31,7 @@
       {% if question.answer_type == 'R' %}
       <div>
         {% for answer in question.get_answers %}
-        <input type="radio" name="{{question.question}}" id="{{question.question}} {{answer}}"/>
+        <input type="radio" name="{{question.question}}" value="{{answer}}"/>
         {{answer}}
         <br>
         {% endfor %}
