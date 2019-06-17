@@ -60,8 +60,8 @@ class Offert(models.Model):
         choices=sal_types,
         default='M',
     )
-    min_salary = models.IntegerField(default=0)
-    max_salary = models.IntegerField(default=0)
+    min_salary = models.PositiveIntegerField(default=0)
+    max_salary = models.PositiveIntegerField(default=0)
     publication_date = models.DateTimeField(auto_now_add = True)
     expiration_date = models.DateField(null=True, default=None)
     must_have = models.ManyToManyField('Tag')

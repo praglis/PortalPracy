@@ -103,8 +103,8 @@
 
         <p class="article-content"><strong>Remote:</strong> <br> {{offert.remote}}</p>
 
-        <a href="{% url 'offerts:offert_details' offert.id %}"><button type="button" class="btn btn-outline-primary">Find out more</button></a>
-        <a  href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-outline-success">APPLY</button></a>
+        <a href="{% url 'offerts:offert_details' offert.id %}"><button type="button" class="btn btn-info mr-2">Details</button></a>
+        <a  href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-success">Apply</button></a>
         <div>
         </article>
         {% endfor %}
