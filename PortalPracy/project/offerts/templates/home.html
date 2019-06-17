@@ -12,7 +12,10 @@
   <div class="overlay">
     <h1>Simply The Best</h1>
     <h3>Reasons for Choosing US</h3>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero nostrum quis, odio veniam itaque ullam debitis qui magnam consequatur ab. Vero nostrum quis, odio veniam itaque ullam debitis qui magnam consequatur ab.</p>
+    <p>
+Need Tech Talent? Cut your time-to-hire with easy access to millions of relevant tech candidates.
+Match your open role to relevant candidates you can’t find anywhere else based on skills,
+industry, experience, interests, and most likely to apply.</p>
     <br>
 
     <a href="{% url 'offerts:index' %}"><button>See all jobs offerts</button></a>
@@ -27,7 +30,7 @@
   <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
+      <a class="mr-2">{{ offert.agency.company.name }}</a>
       <small class="text-muted">Published: {{ offert.publication_date}}</small>
     </div>
     <h2><a class="article-title">Position: {{ offert.position }}</a></h2>

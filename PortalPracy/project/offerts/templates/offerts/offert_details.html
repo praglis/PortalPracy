@@ -11,7 +11,7 @@
   <img class="article-img" src="{{offert.agency.company.logo.url}}" alt="logo">
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2" href='#'>{{ offert.agency.company.name }}</a>
+      <a class="mr-2">{{ offert.agency.company.name }}</a>
       <small class="text-muted">{{offert.publication_date}}</small>
     </div>
     <h1><a class="article-title">{{ offert.position }}</a></h1>
@@ -72,11 +72,11 @@
     <hr> <h3>Manage your offert:</h3> <br>
     <a href="{% url 'manager:manager-update' offert.id %}"><button type="button" class="btn btn-primary mb-4" >Update offert</button></a>
     <a href="{% url 'manager:manager-delete' offert.id %}"><button type="button" class="btn btn-danger mb-4" >Delete offert</button></a>
-  {% else %}
-    <a href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-success btn-lg mt-2 mb-2">Apply</button></a>
-  {% endif %}
-    <div>
     </article>
     <a class="btn btn-secondary mb-4 mr-2" href="{% url 'manager:manager-my' user.username %}">My offerts list</a>
     <a href="{% url 'manager:manager-replies' offert.id %}"><button type="button" class="btn btn-info mb-4">View applications</button></a>
+  {% else %}
+    <a href="{% url 'offerts:apply' offert.id %}"><button type="button" class="btn btn-success btn-lg mt-2 mb-2">Apply</button></a>
+    </article>
+  {% endif %}
     {% endblock %}
