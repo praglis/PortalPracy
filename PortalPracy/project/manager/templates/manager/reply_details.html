@@ -3,7 +3,7 @@
 
    {% block head %}
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-    <title>aaaaaaaa</title>
+    <title>Portal Pracy</title>
    {% endblock %}
 
   {% block body %}
@@ -28,6 +28,7 @@
         <div>
         <hr>
          <h3>Your questions answered:</h3> <br>
+         {% if custom_answers %}
          <ol>
            {% for answer in custom_answers %}
              <li><p><strong> {{answer.question.question}} </strong></p></li>
@@ -37,6 +38,11 @@
              <br><br>
            {% endfor %}
          </ol>
+         {% else %}
+          <h6><strong>You didn't create any questions.</strong></h6>
+          <br>
+         {% endif %}
+         <a href="{% url 'manager:manager-replies' application.offert.id %}"><button type="button" class="btn btn-info mb-2">Go back to applications</button></a>
         </div>
     </article>
   {% endblock %}
