@@ -1,48 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
 
-   {% block head %}
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-    <title>Portal Pracy</title>
-   {% endblock %}
+{% block head %}
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+<title>Portal Pracy</title>
+{% endblock %}
 
-  {% block body %}
-    <article class="media content-section">
-    <img class="article-img" src="{{application.offert.agency.company.logo.url}}" alt="logo">
-        <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href='#'>{{ application.offert.agency.company.name }}</a>
-              <small class="text-muted">{{ application.offert.publication_date }}</small>
-            </div>
-            <h1><a class="article-title">Position: {{ application.offert.position}}</a></h1>
-            <hr>
-            <p class="article-content"><strong>Author:</strong> <br> {{ application.first_name }} {{ application.last_name }}</p>
-            <p class="article-content"><strong>Message:</strong> <br> {{ application.message }}</p>
-            <p class="article-content"><strong>Portfolio link:</strong>{% if application.portfolio_link %}
-              <a href="{{ application.portfolio_link }}">{{ application.portfolio_link }}</a> </p>
-              {% else %}
-              <a>{{ application.portfolio_link }}</a> </p>
-              {% endif %}
+{% block body %}
+<article class="media content-section">
+  <img class="article-img" src="{{application.offert.agency.company.logo.url}}" alt="logo">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href='#'>{{ application.offert.agency.company.name }}</a>
+      <small class="text-muted">{{ application.offert.publication_date }}</small>
+    </div>
+    <h1><a class="article-title">Position: {{ application.offert.position}}</a></h1>
+    <hr>
+    <p class="article-content"><strong>Author:</strong> <br> {{ application.first_name }} {{ application.last_name }}</p>
+    <p class="article-content"><strong>Message:</strong> <br> {{ application.message }}</p>
+    <p class="article-content"><strong>Portfolio link:</strong>{% if application.portfolio_link %}
+      <a href="{{ application.portfolio_link }}">{{ application.portfolio_link }}</a> </p>
+      {% else %}
+      <a>{{ application.portfolio_link }}</a></p>
+      {% endif %}
 
-            <p class="article-content" ><strong>CV:</strong><a href="/media/{{application.cv}}"><br>{{application.cv }}</a></p>
-        <div>
+      <p class="article-content" ><strong>CV:</strong><a href="/media/{{application.cv}}"><br>{{application.cv }}</a></p>
+      <div>
         <hr>
-         <h3>Your questions answered:</h3> <br>
-         {% if custom_answers %}
-         <ol>
-           {% for answer in custom_answers %}
-             <li><p><strong> {{answer.question.question}} </strong></p></li>
-             <ul>
-               {% for an in answer.get_answers %}<li>{{an}}</li>  {% endfor %}
-             </ul>
-             <br><br>
-           {% endfor %}
-         </ol>
-         {% else %}
-          <h6><strong>You didn't create any questions.</strong></h6>
-          <br>
-         {% endif %}
-         <a href="{% url 'manager:manager-replies' application.offert.id %}"><button type="button" class="btn btn-info mb-2">Go back to applications</button></a>
-        </div>
+        <h3>Your questions answered:</h3> <br>
+        {% if custom_answers %}
+        <ol>
+          {% for answer in custom_answers %}
+          <li><p><strong> {{answer.question.question}} </strong></p></li>
+          <ul>
+            {% for an in answer.get_answers %}<li>{{an}}</li>  {% endfor %}
+          </ul>
+          <br><br>
+          {% endfor %}
+        </ol>
+        {% else %}
+        <h6><strong>You didn't create any questions.</strong></h6>
+        <br>
+        {% endif %}
+      </div>
     </article>
-  {% endblock %}
+    <a href="{% url 'manager:manager-replies' application.offert.id %}"><button type="button" class="btn btn-secondary mb-4">Go back to applications</button></a>
+    {% endblock %}

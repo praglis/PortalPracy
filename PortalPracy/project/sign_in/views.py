@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django import template
 
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, AccountTypeForm
-
 
 def register(request):
     if request.method == "POST":
@@ -47,3 +47,8 @@ def profile(request):
         'p_form': p_form
     }
     return render(request, 'sign_in/profile.html', context)
+
+def LogoutView(request):
+    logout(request)
+    messages.success(request, f'Succesfully logged out!')
+    return redirect('home')

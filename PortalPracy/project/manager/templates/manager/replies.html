@@ -26,7 +26,7 @@
         {% endfor %}
       {% else %}
         <h5><strong>No replies.</strong></h5> <br>
-        <a class="btn btn-info mb-2" href="{% url 'manager:manager-my' user.username %}">Go back to my offerts</a>
       {% endif %}
-
+      <a class="btn btn-secondary mb-2" href="{% url 'manager:manager-my' user.username %}">Go back to my offerts list</a>
+      <br>
     {% endblock %}

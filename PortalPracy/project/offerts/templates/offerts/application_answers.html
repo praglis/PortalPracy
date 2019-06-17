@@ -7,16 +7,14 @@
 {% endblock %}
 
 {% block body %}
-<h3>Write possible answers for your question.</h3>
+<h3>Write possible answers for your question:</h3>
 <hr>
 
 <form method="POST" novalidate>
   {% csrf_token %}
   <fieldset class="form-group">
-      <legend class="border-bottom mb-4">Apply for a job:</legend>
       <input type="hidden" name="next" value="{% url 'offerts:application_form' %}" />
       {{ form|crispy }}
-
   </fieldset>
 
   <br>

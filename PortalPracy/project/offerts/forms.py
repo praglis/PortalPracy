@@ -28,7 +28,7 @@ class OffertCreateForm(forms.ModelForm):
         return saved_data
 
 class ApplicationForm(forms.ModelForm):
-    answer_count = forms.IntegerField(label='Number of answers:', initial=3);
+    answer_count = forms.IntegerField(label='Number of answers (max. 15):', initial=3);
     class Meta:
         model = CustomQuestion
         fields = ['question', 'answer_type', 'answer_count']
@@ -53,6 +53,8 @@ class ApplicationForm(forms.ModelForm):
 class AnswerForm(forms.Form):
     def __init__(self, *args, **kwargs):
         field_count = kwargs.pop('field_count')
+        if int(field_count) > 15:
+            field_count = 15
         super(AnswerForm, self).__init__(*args, **kwargs)
 
         for i in range(1, int(field_count) + 1):

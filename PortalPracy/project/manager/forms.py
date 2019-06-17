@@ -21,9 +21,3 @@ class OffertUpdateForm(forms.ModelForm):
      def is_valid(self, request):
          self.instance.author = request.user
          return super().is_valid()
-
-     def test_func(self):
-         offert = self.get_object()
-         if self.request.user == offert.author:
-             return True
-         return False
